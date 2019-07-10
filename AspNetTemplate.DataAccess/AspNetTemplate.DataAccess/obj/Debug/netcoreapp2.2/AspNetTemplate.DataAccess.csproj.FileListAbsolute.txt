@@ -1,0 +1,5 @@
+R:\Workspaces\AspNetTemplate\AspNetTemplate.DataAccess\AspNetTemplate.DataAccess\bin\Debug\netcoreapp2.2\AspNetTemplate.DataAccess.deps.json
+R:\Workspaces\AspNetTemplate\AspNetTemplate.DataAccess\AspNetTemplate.DataAccess\bin\Debug\netcoreapp2.2\AspNetTemplate.DataAccess.dll
+R:\Workspaces\AspNetTemplate\AspNetTemplate.DataAccess\AspNetTemplate.DataAccess\obj\Debug\netcoreapp2.2\AspNetTemplate.DataAccess.csproj.CoreCompileInputs.cache
+R:\Workspaces\AspNetTemplate\AspNetTemplate.DataAccess\AspNetTemplate.DataAccess\obj\Debug\netcoreapp2.2\AspNetTemplate.DataAccess.AssemblyInfoInputs.cache
+R:\Workspaces\AspNetTemplate\AspNetTemplate.DataAccess\AspNetTemplate.DataAccess\obj\Debug\netcoreapp2.2\AspNetTemplate.DataAccess.AssemblyInfo.cs
