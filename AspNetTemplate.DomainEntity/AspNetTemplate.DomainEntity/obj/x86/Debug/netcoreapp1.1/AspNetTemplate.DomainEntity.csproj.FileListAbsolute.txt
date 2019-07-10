@@ -1,0 +1,9 @@
+R:\Workspaces\AspNetTemplate\AspNetTemplate.DomainEntity\AspNetTemplate.DomainEntity\bin\x86\Debug\netcoreapp1.1\AspNetTemplate.DomainEntity.deps.json
+R:\Workspaces\AspNetTemplate\AspNetTemplate.DomainEntity\AspNetTemplate.DomainEntity\bin\x86\Debug\netcoreapp1.1\AspNetTemplate.DomainEntity.dll
+R:\Workspaces\AspNetTemplate\AspNetTemplate.DomainEntity\AspNetTemplate.DomainEntity\bin\x86\Debug\netcoreapp1.1\AspNetTemplate.DomainEntity.pdb
+R:\Workspaces\AspNetTemplate\AspNetTemplate.DomainEntity\AspNetTemplate.DomainEntity\obj\x86\Debug\netcoreapp1.1\AspNetTemplate.DomainEntity.csprojResolveAssemblyReference.cache
+R:\Workspaces\AspNetTemplate\AspNetTemplate.DomainEntity\AspNetTemplate.DomainEntity\obj\x86\Debug\netcoreapp1.1\AspNetTemplate.DomainEntity.csproj.CoreCompileInputs.cache
+R:\Workspaces\AspNetTemplate\AspNetTemplate.DomainEntity\AspNetTemplate.DomainEntity\obj\x86\Debug\netcoreapp1.1\AspNetTemplate.DomainEntity.AssemblyInfoInputs.cache
+R:\Workspaces\AspNetTemplate\AspNetTemplate.DomainEntity\AspNetTemplate.DomainEntity\obj\x86\Debug\netcoreapp1.1\AspNetTemplate.DomainEntity.AssemblyInfo.cs
+R:\Workspaces\AspNetTemplate\AspNetTemplate.DomainEntity\AspNetTemplate.DomainEntity\obj\x86\Debug\netcoreapp1.1\AspNetTemplate.DomainEntity.dll
+R:\Workspaces\AspNetTemplate\AspNetTemplate.DomainEntity\AspNetTemplate.DomainEntity\obj\x86\Debug\netcoreapp1.1\AspNetTemplate.DomainEntity.pdb

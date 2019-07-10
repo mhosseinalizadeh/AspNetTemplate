@@ -207,6 +207,19 @@
         "build": {
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
+      },
+      "AspNetTemplate.DomainEntity/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v1.1",
+        "dependencies": {
+          "Microsoft.NETCore.App": "1.1.2"
+        },
+        "compile": {
+          "bin/placeholder/AspNetTemplate.DomainEntity.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/AspNetTemplate.DomainEntity.dll": {}
+        }
       }
     }
   },
@@ -678,10 +691,16 @@
         "netstandard.library.2.0.3.nupkg.sha512",
         "netstandard.library.nuspec"
       ]
+    },
+    "AspNetTemplate.DomainEntity/1.0.0": {
+      "type": "project",
+      "path": "../../AspNetTemplate.DomainEntity/AspNetTemplate.DomainEntity/AspNetTemplate.DomainEntity.csproj",
+      "msbuildProject": "../../AspNetTemplate.DomainEntity/AspNetTemplate.DomainEntity/AspNetTemplate.DomainEntity.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.2": [
+      "AspNetTemplate.DomainEntity >= 1.0.0",
       "Microsoft.NETCore.App >= 2.2.0"
     ]
   },
@@ -717,7 +736,11 @@
       },
       "frameworks": {
         "netcoreapp2.2": {
-          "projectReferences": {}
+          "projectReferences": {
+            "R:\\Workspaces\\AspNetTemplate\\AspNetTemplate.DomainEntity\\AspNetTemplate.DomainEntity\\AspNetTemplate.DomainEntity.csproj": {
+              "projectPath": "R:\\Workspaces\\AspNetTemplate\\AspNetTemplate.DomainEntity\\AspNetTemplate.DomainEntity\\AspNetTemplate.DomainEntity.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

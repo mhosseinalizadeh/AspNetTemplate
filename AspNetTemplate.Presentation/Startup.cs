@@ -1,14 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using AspNetTemplate.DataAccess.UnitOfWork;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using AspNetTemplate.DataAccess.Repository.IRepository;
+using AspNetTemplate.DataAccess.Repository.Repository;
+using AspNetTemplate.ApplicationService.UserService;
+using System.Data;
 
 namespace AspNetTemplate
 {
@@ -31,6 +31,16 @@ namespace AspNetTemplate
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddScoped<IDbTransaction>(provider =>
+            {
+                var ExcelUnitOfWork = (ExcelUnitOfWork)provider.GetService(typeof(IUnitOfWork));
+                return ExcelUnitOfWork.Transaction;
+            });
+
+            services.AddScoped<IUnitOfWork, ExcelUnitOfWork>(provider => new ExcelUnitOfWork(Configuration.GetConnectionString("ExcelConnection")));
+
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

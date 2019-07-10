@@ -3,3 +3,10 @@ R:\Workspaces\AspNetTemplate\AspNetTemplate.DataAccess\AspNetTemplate.DataAccess
 R:\Workspaces\AspNetTemplate\AspNetTemplate.DataAccess\AspNetTemplate.DataAccess\obj\Debug\netcoreapp2.2\AspNetTemplate.DataAccess.csproj.CoreCompileInputs.cache
 R:\Workspaces\AspNetTemplate\AspNetTemplate.DataAccess\AspNetTemplate.DataAccess\obj\Debug\netcoreapp2.2\AspNetTemplate.DataAccess.AssemblyInfoInputs.cache
 R:\Workspaces\AspNetTemplate\AspNetTemplate.DataAccess\AspNetTemplate.DataAccess\obj\Debug\netcoreapp2.2\AspNetTemplate.DataAccess.AssemblyInfo.cs
+R:\Workspaces\AspNetTemplate\AspNetTemplate.DataAccess\AspNetTemplate.DataAccess\obj\Debug\netcoreapp2.2\AspNetTemplate.DataAccess.csprojResolveAssemblyReference.cache
+R:\Workspaces\AspNetTemplate\AspNetTemplate.DataAccess\AspNetTemplate.DataAccess\bin\Debug\netcoreapp2.2\AspNetTemplate.DataAccess.pdb
+R:\Workspaces\AspNetTemplate\AspNetTemplate.DataAccess\AspNetTemplate.DataAccess\bin\Debug\netcoreapp2.2\AspNetTemplate.DomainEntity.dll
+R:\Workspaces\AspNetTemplate\AspNetTemplate.DataAccess\AspNetTemplate.DataAccess\bin\Debug\netcoreapp2.2\AspNetTemplate.DomainEntity.pdb
+R:\Workspaces\AspNetTemplate\AspNetTemplate.DataAccess\AspNetTemplate.DataAccess\obj\Debug\netcoreapp2.2\AspNetTemplate.DataAccess.csproj.CopyComplete
+R:\Workspaces\AspNetTemplate\AspNetTemplate.DataAccess\AspNetTemplate.DataAccess\obj\Debug\netcoreapp2.2\AspNetTemplate.DataAccess.dll
+R:\Workspaces\AspNetTemplate\AspNetTemplate.DataAccess\AspNetTemplate.DataAccess\obj\Debug\netcoreapp2.2\AspNetTemplate.DataAccess.pdb

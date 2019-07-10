@@ -2,6 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
+    <Platforms>AnyCPU;x86</Platforms>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\AspNetTemplate.DataAccess\AspNetTemplate.DataAccess\AspNetTemplate.DataAccess.csproj" />
+    <ProjectReference Include="..\..\AspNetTemplate.DomainEntity\AspNetTemplate.DomainEntity\AspNetTemplate.DomainEntity.csproj" />
+  </ItemGroup>
 
 </Project>

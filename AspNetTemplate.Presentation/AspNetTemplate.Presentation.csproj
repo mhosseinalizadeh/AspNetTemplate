@@ -3,12 +3,21 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <Platforms>AnyCPU;x86</Platforms>
   </PropertyGroup>
 
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\AspNetTemplate.ApplicationService\ApplicationService\AspNetTemplate.ApplicationService.csproj" />
+    <ProjectReference Include="..\AspNetTemplate.ClientEntity\ClientEntity\AspNetTemplate.ClientEntity.csproj" />
+    <ProjectReference Include="..\AspNetTemplate.DataAccess\AspNetTemplate.DataAccess\AspNetTemplate.DataAccess.csproj" />
+    <ProjectReference Include="..\AspNetTemplate.DomainEntity\AspNetTemplate.DomainEntity\AspNetTemplate.DomainEntity.csproj" />
   </ItemGroup>
 
 </Project>

@@ -37,6 +37,20 @@ namespace AspNetTemplate.DataAccess.UnitOfWork
             }
         }
 
+        public IDbTransaction Transaction
+        {
+            get
+            {
+                if (_transaction.Connection.State != ConnectionState.Closed)
+                    return _transaction;
+                else
+                {
+                    createNewConnection();
+                    return _transaction;
+                }
+            }
+        }
+
         private void createNewConnection() {
             _connection = new OleDbConnection(_connectionString);
             _connection.Open();

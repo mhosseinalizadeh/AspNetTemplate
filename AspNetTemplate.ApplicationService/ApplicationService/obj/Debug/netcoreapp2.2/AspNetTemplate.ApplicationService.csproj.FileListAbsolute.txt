@@ -1,0 +1,14 @@
+R:\Workspaces\AspNetTemplate\AspNetTemplate.ApplicationService\ApplicationService\bin\Debug\netcoreapp2.2\AspNetTemplate.ApplicationService.deps.json
+R:\Workspaces\AspNetTemplate\AspNetTemplate.ApplicationService\ApplicationService\bin\Debug\netcoreapp2.2\AspNetTemplate.ApplicationService.dll
+R:\Workspaces\AspNetTemplate\AspNetTemplate.ApplicationService\ApplicationService\bin\Debug\netcoreapp2.2\AspNetTemplate.ApplicationService.pdb
+R:\Workspaces\AspNetTemplate\AspNetTemplate.ApplicationService\ApplicationService\bin\Debug\netcoreapp2.2\AspNetTemplate.DataAccess.dll
+R:\Workspaces\AspNetTemplate\AspNetTemplate.ApplicationService\ApplicationService\bin\Debug\netcoreapp2.2\AspNetTemplate.DomainEntity.dll
+R:\Workspaces\AspNetTemplate\AspNetTemplate.ApplicationService\ApplicationService\bin\Debug\netcoreapp2.2\AspNetTemplate.DataAccess.pdb
+R:\Workspaces\AspNetTemplate\AspNetTemplate.ApplicationService\ApplicationService\bin\Debug\netcoreapp2.2\AspNetTemplate.DomainEntity.pdb
+R:\Workspaces\AspNetTemplate\AspNetTemplate.ApplicationService\ApplicationService\obj\Debug\netcoreapp2.2\AspNetTemplate.ApplicationService.csprojResolveAssemblyReference.cache
+R:\Workspaces\AspNetTemplate\AspNetTemplate.ApplicationService\ApplicationService\obj\Debug\netcoreapp2.2\AspNetTemplate.ApplicationService.csproj.CoreCompileInputs.cache
+R:\Workspaces\AspNetTemplate\AspNetTemplate.ApplicationService\ApplicationService\obj\Debug\netcoreapp2.2\AspNetTemplate.ApplicationService.AssemblyInfoInputs.cache
+R:\Workspaces\AspNetTemplate\AspNetTemplate.ApplicationService\ApplicationService\obj\Debug\netcoreapp2.2\AspNetTemplate.ApplicationService.AssemblyInfo.cs
+R:\Workspaces\AspNetTemplate\AspNetTemplate.ApplicationService\ApplicationService\obj\Debug\netcoreapp2.2\AspNetTemplate.ApplicationService.csproj.CopyComplete
+R:\Workspaces\AspNetTemplate\AspNetTemplate.ApplicationService\ApplicationService\obj\Debug\netcoreapp2.2\AspNetTemplate.ApplicationService.dll
+R:\Workspaces\AspNetTemplate\AspNetTemplate.ApplicationService\ApplicationService\obj\Debug\netcoreapp2.2\AspNetTemplate.ApplicationService.pdb

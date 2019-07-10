@@ -1,0 +1,12 @@
+R:\Workspaces\AspNetTemplate\AspNetTemplate.ClientEntity\ClientEntity\bin\Debug\netcoreapp2.2\AspNetTemplate.ClientEntity.deps.json
+R:\Workspaces\AspNetTemplate\AspNetTemplate.ClientEntity\ClientEntity\bin\Debug\netcoreapp2.2\AspNetTemplate.ClientEntity.dll
+R:\Workspaces\AspNetTemplate\AspNetTemplate.ClientEntity\ClientEntity\bin\Debug\netcoreapp2.2\AspNetTemplate.ClientEntity.pdb
+R:\Workspaces\AspNetTemplate\AspNetTemplate.ClientEntity\ClientEntity\bin\Debug\netcoreapp2.2\AspNetTemplate.DomainEntity.dll
+R:\Workspaces\AspNetTemplate\AspNetTemplate.ClientEntity\ClientEntity\bin\Debug\netcoreapp2.2\AspNetTemplate.DomainEntity.pdb
+R:\Workspaces\AspNetTemplate\AspNetTemplate.ClientEntity\ClientEntity\obj\Debug\netcoreapp2.2\AspNetTemplate.ClientEntity.csprojResolveAssemblyReference.cache
+R:\Workspaces\AspNetTemplate\AspNetTemplate.ClientEntity\ClientEntity\obj\Debug\netcoreapp2.2\AspNetTemplate.ClientEntity.csproj.CoreCompileInputs.cache
+R:\Workspaces\AspNetTemplate\AspNetTemplate.ClientEntity\ClientEntity\obj\Debug\netcoreapp2.2\AspNetTemplate.ClientEntity.AssemblyInfoInputs.cache
+R:\Workspaces\AspNetTemplate\AspNetTemplate.ClientEntity\ClientEntity\obj\Debug\netcoreapp2.2\AspNetTemplate.ClientEntity.AssemblyInfo.cs
+R:\Workspaces\AspNetTemplate\AspNetTemplate.ClientEntity\ClientEntity\obj\Debug\netcoreapp2.2\AspNetTemplate.ClientEntity.csproj.CopyComplete
+R:\Workspaces\AspNetTemplate\AspNetTemplate.ClientEntity\ClientEntity\obj\Debug\netcoreapp2.2\AspNetTemplate.ClientEntity.dll
+R:\Workspaces\AspNetTemplate\AspNetTemplate.ClientEntity\ClientEntity\obj\Debug\netcoreapp2.2\AspNetTemplate.ClientEntity.pdb
