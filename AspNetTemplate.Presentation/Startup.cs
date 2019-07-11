@@ -9,6 +9,9 @@ using AspNetTemplate.DataAccess.Repository.IRepository;
 using AspNetTemplate.DataAccess.Repository.Repository;
 using AspNetTemplate.ApplicationService.UserService;
 using System.Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.Extensions.Caching.Memory;
+using AspNetTemplate.CommonService;
 
 namespace AspNetTemplate
 {
@@ -31,14 +34,28 @@ namespace AspNetTemplate
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddMemoryCache();
+            services.AddSingleton<IMemoryCache>(provider => new MemoryCache(new MemoryCacheOptions
+            {
+                SizeLimit = 20
+            }));
+
+            services.AddSingleton<ILocalizationService, LocalizationService>();
+
             services.AddScoped<IDbTransaction>(provider =>
             {
-                var ExcelUnitOfWork = (ExcelUnitOfWork)provider.GetService(typeof(IUnitOfWork));
-                return ExcelUnitOfWork.Transaction;
+                var UnitOfWork = (DapperUnitOfWork)provider.GetService(typeof(IUnitOfWork));
+                return UnitOfWork.Transaction;
             });
 
-            services.AddScoped<IUnitOfWork, ExcelUnitOfWork>(provider => new ExcelUnitOfWork(Configuration.GetConnectionString("ExcelConnection")));
 
+            services.AddScoped<IUnitOfWork, DapperUnitOfWork>(provider => new DapperUnitOfWork(Configuration.GetConnectionString("DefaultConnection")));
+
+            // Enable cookie authentication
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                    .AddCookie();
+
+            services.AddScoped<ICacheService, CacheService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IUserRepository, UserRepository>();
 
@@ -58,7 +75,7 @@ namespace AspNetTemplate
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();

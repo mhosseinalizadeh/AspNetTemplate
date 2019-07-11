@@ -2,13 +2,28 @@
 @{
     ViewData["Title"] = "Home page";
 }
-
-<div class="text-center">
+@section Scripts{ 
+    <script src="~/js/pages/home/index.js"></script>
+}
+<div class="container text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    @foreach (var item in Model?.Users)
-    {
-        <div>FirstName : @item.FirstName</div>
-        <div>LastName : @item.LastName</div>
-    }
+
+    <div class="row justify-content-md-center">
+        <div class="col col-6">
+            <form>
+                <div class="form-group">
+                    <label for="email" class="float-left">Email address</label>
+                    <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="float-left">Password</label>
+                    <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+                </div>
+                <button id="btn-login" type="submit" class="btn btn-primary">Submit</button>
+            </form>
+
+        </div>
+    </div>
 </div>

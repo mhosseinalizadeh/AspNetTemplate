@@ -10,3 +10,15 @@ R:\Workspaces\AspNetTemplate\AspNetTemplate.DataAccess\AspNetTemplate.DataAccess
 R:\Workspaces\AspNetTemplate\AspNetTemplate.DataAccess\AspNetTemplate.DataAccess\obj\Debug\netcoreapp2.2\AspNetTemplate.DataAccess.csproj.CopyComplete
 R:\Workspaces\AspNetTemplate\AspNetTemplate.DataAccess\AspNetTemplate.DataAccess\obj\Debug\netcoreapp2.2\AspNetTemplate.DataAccess.dll
 R:\Workspaces\AspNetTemplate\AspNetTemplate.DataAccess\AspNetTemplate.DataAccess\obj\Debug\netcoreapp2.2\AspNetTemplate.DataAccess.pdb
+H:\Omid\prj\MyApp\MyApp\AspNetTemplate.DataAccess\AspNetTemplate.DataAccess\bin\Debug\netcoreapp2.2\AspNetTemplate.DataAccess.deps.json
+H:\Omid\prj\MyApp\MyApp\AspNetTemplate.DataAccess\AspNetTemplate.DataAccess\bin\Debug\netcoreapp2.2\AspNetTemplate.DataAccess.dll
+H:\Omid\prj\MyApp\MyApp\AspNetTemplate.DataAccess\AspNetTemplate.DataAccess\bin\Debug\netcoreapp2.2\AspNetTemplate.DataAccess.pdb
+H:\Omid\prj\MyApp\MyApp\AspNetTemplate.DataAccess\AspNetTemplate.DataAccess\bin\Debug\netcoreapp2.2\AspNetTemplate.DomainEntity.dll
+H:\Omid\prj\MyApp\MyApp\AspNetTemplate.DataAccess\AspNetTemplate.DataAccess\bin\Debug\netcoreapp2.2\AspNetTemplate.DomainEntity.pdb
+H:\Omid\prj\MyApp\MyApp\AspNetTemplate.DataAccess\AspNetTemplate.DataAccess\obj\Debug\netcoreapp2.2\AspNetTemplate.DataAccess.csprojAssemblyReference.cache
+H:\Omid\prj\MyApp\MyApp\AspNetTemplate.DataAccess\AspNetTemplate.DataAccess\obj\Debug\netcoreapp2.2\AspNetTemplate.DataAccess.csproj.CoreCompileInputs.cache
+H:\Omid\prj\MyApp\MyApp\AspNetTemplate.DataAccess\AspNetTemplate.DataAccess\obj\Debug\netcoreapp2.2\AspNetTemplate.DataAccess.AssemblyInfoInputs.cache
+H:\Omid\prj\MyApp\MyApp\AspNetTemplate.DataAccess\AspNetTemplate.DataAccess\obj\Debug\netcoreapp2.2\AspNetTemplate.DataAccess.AssemblyInfo.cs
+H:\Omid\prj\MyApp\MyApp\AspNetTemplate.DataAccess\AspNetTemplate.DataAccess\obj\Debug\netcoreapp2.2\AspNetTemplate.DataAccess.csproj.CopyComplete
+H:\Omid\prj\MyApp\MyApp\AspNetTemplate.DataAccess\AspNetTemplate.DataAccess\obj\Debug\netcoreapp2.2\AspNetTemplate.DataAccess.dll
+H:\Omid\prj\MyApp\MyApp\AspNetTemplate.DataAccess\AspNetTemplate.DataAccess\obj\Debug\netcoreapp2.2\AspNetTemplate.DataAccess.pdb

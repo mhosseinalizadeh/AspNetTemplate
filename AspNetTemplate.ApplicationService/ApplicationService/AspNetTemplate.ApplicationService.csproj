@@ -6,6 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\AspNetTemplate.ClientEntity\ClientEntity\AspNetTemplate.ClientEntity.csproj" />
+    <ProjectReference Include="..\..\AspNetTemplate.CommonService\AspNetTemplate.CommonService\AspNetTemplate.CommonService.csproj" />
     <ProjectReference Include="..\..\AspNetTemplate.DataAccess\AspNetTemplate.DataAccess\AspNetTemplate.DataAccess.csproj" />
     <ProjectReference Include="..\..\AspNetTemplate.DomainEntity\AspNetTemplate.DomainEntity\AspNetTemplate.DomainEntity.csproj" />
   </ItemGroup>

@@ -10,3 +10,15 @@ R:\Workspaces\AspNetTemplate\AspNetTemplate.ClientEntity\ClientEntity\obj\Debug\
 R:\Workspaces\AspNetTemplate\AspNetTemplate.ClientEntity\ClientEntity\obj\Debug\netcoreapp2.2\AspNetTemplate.ClientEntity.csproj.CopyComplete
 R:\Workspaces\AspNetTemplate\AspNetTemplate.ClientEntity\ClientEntity\obj\Debug\netcoreapp2.2\AspNetTemplate.ClientEntity.dll
 R:\Workspaces\AspNetTemplate\AspNetTemplate.ClientEntity\ClientEntity\obj\Debug\netcoreapp2.2\AspNetTemplate.ClientEntity.pdb
+H:\Omid\prj\MyApp\MyApp\AspNetTemplate.ClientEntity\ClientEntity\bin\Debug\netcoreapp2.2\AspNetTemplate.ClientEntity.deps.json
+H:\Omid\prj\MyApp\MyApp\AspNetTemplate.ClientEntity\ClientEntity\bin\Debug\netcoreapp2.2\AspNetTemplate.ClientEntity.dll
+H:\Omid\prj\MyApp\MyApp\AspNetTemplate.ClientEntity\ClientEntity\bin\Debug\netcoreapp2.2\AspNetTemplate.ClientEntity.pdb
+H:\Omid\prj\MyApp\MyApp\AspNetTemplate.ClientEntity\ClientEntity\bin\Debug\netcoreapp2.2\AspNetTemplate.DomainEntity.dll
+H:\Omid\prj\MyApp\MyApp\AspNetTemplate.ClientEntity\ClientEntity\bin\Debug\netcoreapp2.2\AspNetTemplate.DomainEntity.pdb
+H:\Omid\prj\MyApp\MyApp\AspNetTemplate.ClientEntity\ClientEntity\obj\Debug\netcoreapp2.2\AspNetTemplate.ClientEntity.csprojAssemblyReference.cache
+H:\Omid\prj\MyApp\MyApp\AspNetTemplate.ClientEntity\ClientEntity\obj\Debug\netcoreapp2.2\AspNetTemplate.ClientEntity.csproj.CoreCompileInputs.cache
+H:\Omid\prj\MyApp\MyApp\AspNetTemplate.ClientEntity\ClientEntity\obj\Debug\netcoreapp2.2\AspNetTemplate.ClientEntity.AssemblyInfoInputs.cache
+H:\Omid\prj\MyApp\MyApp\AspNetTemplate.ClientEntity\ClientEntity\obj\Debug\netcoreapp2.2\AspNetTemplate.ClientEntity.AssemblyInfo.cs
+H:\Omid\prj\MyApp\MyApp\AspNetTemplate.ClientEntity\ClientEntity\obj\Debug\netcoreapp2.2\AspNetTemplate.ClientEntity.csproj.CopyComplete
+H:\Omid\prj\MyApp\MyApp\AspNetTemplate.ClientEntity\ClientEntity\obj\Debug\netcoreapp2.2\AspNetTemplate.ClientEntity.dll
+H:\Omid\prj\MyApp\MyApp\AspNetTemplate.ClientEntity\ClientEntity\obj\Debug\netcoreapp2.2\AspNetTemplate.ClientEntity.pdb

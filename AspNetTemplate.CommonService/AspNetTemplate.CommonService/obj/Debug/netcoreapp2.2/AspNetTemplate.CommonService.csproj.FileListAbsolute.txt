@@ -1,0 +1,16 @@
+H:\Omid\prj\MyApp\MyApp\AspNetTemplate.CommonService\AspNetTemplate.CommonService\bin\Debug\netcoreapp2.2\AspNetTemplate.CommonService.deps.json
+H:\Omid\prj\MyApp\MyApp\AspNetTemplate.CommonService\AspNetTemplate.CommonService\bin\Debug\netcoreapp2.2\AspNetTemplate.CommonService.dll
+H:\Omid\prj\MyApp\MyApp\AspNetTemplate.CommonService\AspNetTemplate.CommonService\bin\Debug\netcoreapp2.2\Microsoft.Extensions.Caching.Abstractions.dll
+H:\Omid\prj\MyApp\MyApp\AspNetTemplate.CommonService\AspNetTemplate.CommonService\bin\Debug\netcoreapp2.2\Microsoft.Extensions.Caching.Abstractions.xml
+H:\Omid\prj\MyApp\MyApp\AspNetTemplate.CommonService\AspNetTemplate.CommonService\obj\Debug\netcoreapp2.2\AspNetTemplate.CommonService.csprojAssemblyReference.cache
+H:\Omid\prj\MyApp\MyApp\AspNetTemplate.CommonService\AspNetTemplate.CommonService\obj\Debug\netcoreapp2.2\AspNetTemplate.CommonService.csproj.CoreCompileInputs.cache
+H:\Omid\prj\MyApp\MyApp\AspNetTemplate.CommonService\AspNetTemplate.CommonService\obj\Debug\netcoreapp2.2\AspNetTemplate.CommonService.AssemblyInfoInputs.cache
+H:\Omid\prj\MyApp\MyApp\AspNetTemplate.CommonService\AspNetTemplate.CommonService\obj\Debug\netcoreapp2.2\AspNetTemplate.CommonService.AssemblyInfo.cs
+H:\Omid\prj\MyApp\MyApp\AspNetTemplate.CommonService\AspNetTemplate.CommonService\obj\Debug\netcoreapp2.2\AspNetTemplate.CommonService.csproj.CopyComplete
+H:\Omid\prj\MyApp\MyApp\AspNetTemplate.CommonService\AspNetTemplate.CommonService\bin\Debug\netcoreapp2.2\AspNetTemplate.CommonService.pdb
+H:\Omid\prj\MyApp\MyApp\AspNetTemplate.CommonService\AspNetTemplate.CommonService\bin\Debug\netcoreapp2.2\AspNetTemplate.DataAccess.dll
+H:\Omid\prj\MyApp\MyApp\AspNetTemplate.CommonService\AspNetTemplate.CommonService\bin\Debug\netcoreapp2.2\AspNetTemplate.DomainEntity.dll
+H:\Omid\prj\MyApp\MyApp\AspNetTemplate.CommonService\AspNetTemplate.CommonService\bin\Debug\netcoreapp2.2\AspNetTemplate.DataAccess.pdb
+H:\Omid\prj\MyApp\MyApp\AspNetTemplate.CommonService\AspNetTemplate.CommonService\bin\Debug\netcoreapp2.2\AspNetTemplate.DomainEntity.pdb
+H:\Omid\prj\MyApp\MyApp\AspNetTemplate.CommonService\AspNetTemplate.CommonService\obj\Debug\netcoreapp2.2\AspNetTemplate.CommonService.dll
+H:\Omid\prj\MyApp\MyApp\AspNetTemplate.CommonService\AspNetTemplate.CommonService\obj\Debug\netcoreapp2.2\AspNetTemplate.CommonService.pdb
