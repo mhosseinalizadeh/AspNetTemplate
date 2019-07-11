@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.2",
-    "signature": "19fd374384c3113c636c5403c267b6908c8b079f"
+    "signature": "927a1f0f3beb685dc54b487b53dc68e360da205a"
   },
   "compilationOptions": {
     "defines": [
@@ -34,7 +34,8 @@
           "Microsoft.AspNetCore.Razor.Design": "2.2.0",
           "Microsoft.NETCore.App": "2.2.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.2.3",
-          "bootstrap": "4.3.1"
+          "bootstrap": "4.3.1",
+          "toastr": "2.1.1"
         },
         "runtime": {
           "AspNetTemplate.Presentation.dll": {}
@@ -628,6 +629,11 @@
             "assemblyVersion": "4.1.1.0",
             "fileVersion": "4.6.26515.6"
           }
+        }
+      },
+      "toastr/2.1.1": {
+        "dependencies": {
+          "jQuery": "3.0.0"
         }
       },
       "AspNetTemplate.ApplicationService/1.0.0": {
@@ -4082,6 +4088,13 @@
       "sha512": "sha512-S0wEUiKcLvRlkFUXca8uio1UQ5bYQzYgOmOKtCqaBQC3GR9AJjh43otcM32IGsAyvadFTaAMw9Irm6dS4Evfng==",
       "path": "system.text.encoding.codepages/4.5.0",
       "hashPath": "system.text.encoding.codepages.4.5.0.nupkg.sha512"
+    },
+    "toastr/2.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-h/688XvzYk1xVYn213ryU+HCElE4n/drYzAHJkAi9LsSUPS3EbI6wGlvCglBUt7i4h5iESgAVarYaigjQmVpqg==",
+      "path": "toastr/2.1.1",
+      "hashPath": "toastr.2.1.1.nupkg.sha512"
     },
     "AspNetTemplate.ApplicationService/1.0.0": {
       "type": "project",

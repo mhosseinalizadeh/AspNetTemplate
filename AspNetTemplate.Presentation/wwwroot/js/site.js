@@ -1,4 +1,18 @@
 ﻿var AppManager = {
+    Notification: {
+        Info: function (msg) {
+            toastr.info(msg);
+        },
+        Warning: function (msg) {
+            toastr.warning(msg);
+        },
+        Success: function (msg) {
+            toastr.success(msg);
+        },
+        Error: function (msg) {
+            toastr.error(msg);
+        }
+    },
     User: {
         Login : function (formData) {
             AppManager.Ajax.Post("/account/login", formData, function (result) {
@@ -22,6 +36,21 @@
             return $.ajax(settings).then(function (data) {
                 if (data) {
                     if (typeof (then) == "function") {
+                        if (data.status == 1) {
+                            if (data.messages != null && data.messages.length > 0) {
+                                for (var i = 0; i < data.messages.length; i++) {
+                                    AppManager.Notification.Success(data.messages[i])
+                                }
+                            }   
+                        }
+
+                        if (data.status == 2) {
+                            if (data.messages != null && data.messages.length > 0) {
+                                for (var i = 0; i < data.messages.length; i++) {
+                                    AppManager.Notification.Error(data.messages[i])
+                                }
+                            }  
+                        }
                         then(data);
                     }
                 }
@@ -57,3 +86,7 @@
         }
     },
 }
+
+toastr.options.preventDuplicates = true;
+toastr.options.closeButton = true;
+toastr.options.positionClass = "toast-bottom-right";
