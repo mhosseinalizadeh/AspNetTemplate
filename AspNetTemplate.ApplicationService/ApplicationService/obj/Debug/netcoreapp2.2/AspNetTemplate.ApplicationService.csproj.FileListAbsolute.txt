@@ -32,3 +32,5 @@ H:\Omid\prj\MyApp\MyApp\AspNetTemplate.ApplicationService\ApplicationService\bin
 H:\Omid\prj\MyApp\MyApp\AspNetTemplate.ApplicationService\ApplicationService\bin\Debug\netcoreapp2.2\AspNetTemplate.ClientEntity.pdb
 H:\Omid\prj\MyApp\MyApp\AspNetTemplate.ApplicationService\ApplicationService\bin\Debug\netcoreapp2.2\AspNetTemplate.CommonService.pdb
 H:\Omid\prj\MyApp\MyApp\AspNetTemplate.ApplicationService\ApplicationService\bin\Debug\netcoreapp2.2\Microsoft.Extensions.Caching.Abstractions.xml
+H:\Omid\prj\MyApp\MyApp\AspNetTemplate.ApplicationService\ApplicationService\bin\Debug\netcoreapp2.2\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+H:\Omid\prj\MyApp\MyApp\AspNetTemplate.ApplicationService\ApplicationService\bin\Debug\netcoreapp2.2\Microsoft.AspNetCore.Cryptography.KeyDerivation.xml

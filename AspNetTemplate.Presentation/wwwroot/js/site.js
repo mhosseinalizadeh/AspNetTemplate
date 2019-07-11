@@ -1,7 +1,7 @@
 ﻿var AppManager = {
     User: {
-        Login = function (formData) {
-            Ajax.Post("/login", formData, function (result) {
+        Login : function (formData) {
+            AppManager.Ajax.Post("/account/login", formData, function (result) {
                 
             });
         }

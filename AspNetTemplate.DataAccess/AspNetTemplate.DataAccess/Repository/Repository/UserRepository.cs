@@ -13,7 +13,7 @@ namespace AspNetTemplate.DataAccess.Repository.Repository
 {
     public class UserRepository : RepositoryBase, IUserRepository
     {
-        private const string _tblName = "User";
+        private const string _tblName = "[User]";
         public UserRepository(IDbTransaction transaction) : base(transaction)
         {
         }
@@ -43,7 +43,7 @@ namespace AspNetTemplate.DataAccess.Repository.Repository
 
 
 
-            string query = $"SELECT * FROM {_tblName } AS u " +
+            string query = $"SELECT * FROM {_tblName} AS u " +
                             $"LEFT JOIN UserRole AS ur ON u.id = ur.userId " +
                             $"LEFT JOIN Role as r ON r.id = ur.roleId " +
                             $"WHERE u.Email = @email";

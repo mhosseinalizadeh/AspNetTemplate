@@ -14,3 +14,5 @@ H:\Omid\prj\MyApp\MyApp\AspNetTemplate.CommonService\AspNetTemplate.CommonServic
 H:\Omid\prj\MyApp\MyApp\AspNetTemplate.CommonService\AspNetTemplate.CommonService\bin\Debug\netcoreapp2.2\AspNetTemplate.DomainEntity.pdb
 H:\Omid\prj\MyApp\MyApp\AspNetTemplate.CommonService\AspNetTemplate.CommonService\obj\Debug\netcoreapp2.2\AspNetTemplate.CommonService.dll
 H:\Omid\prj\MyApp\MyApp\AspNetTemplate.CommonService\AspNetTemplate.CommonService\obj\Debug\netcoreapp2.2\AspNetTemplate.CommonService.pdb
+H:\Omid\prj\MyApp\MyApp\AspNetTemplate.CommonService\AspNetTemplate.CommonService\bin\Debug\netcoreapp2.2\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+H:\Omid\prj\MyApp\MyApp\AspNetTemplate.CommonService\AspNetTemplate.CommonService\bin\Debug\netcoreapp2.2\Microsoft.AspNetCore.Cryptography.KeyDerivation.xml

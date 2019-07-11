@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using System;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -8,14 +9,11 @@ namespace AspNetTemplate.CommonService
     {
         public string ComputeHash(string input)
         {
-            byte[] result;
-            var data = Encoding.ASCII.GetBytes(input);
-            SHA1 sha = new SHA1CryptoServiceProvider();
-            byte[] sha1data = sha.ComputeHash(data);
-
-            ASCIIEncoding ascii = new ASCIIEncoding();
-            return ascii.GetString(sha1data);
-
+            string msg = "";
+            byte[] encode = new byte[input.Length];
+            encode = Encoding.UTF8.GetBytes(input);
+            msg = Convert.ToBase64String(encode);
+            return msg;
         }
     }
 }

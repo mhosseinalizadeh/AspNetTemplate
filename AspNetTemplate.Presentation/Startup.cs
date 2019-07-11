@@ -40,7 +40,7 @@ namespace AspNetTemplate
                 SizeLimit = 20
             }));
 
-            services.AddSingleton<ILocalizationService, LocalizationService>();
+           
 
             services.AddScoped<IDbTransaction>(provider =>
             {
@@ -55,9 +55,13 @@ namespace AspNetTemplate
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                     .AddCookie();
 
+            services.AddScoped<ILocalizationService, LocalizationService>();
             services.AddScoped<ICacheService, CacheService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ICryptographyService, CryptographyService>();
+
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ILocalizationRepository, LocalizationRepository>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

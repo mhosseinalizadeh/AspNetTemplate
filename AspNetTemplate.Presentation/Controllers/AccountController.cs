@@ -22,6 +22,7 @@ namespace AspNetTemplate.Presentation.Controllers
             _userService = userService;
         }
 
+        [Route("/account/login")]
         [HttpPost]
         public async Task<IActionResult> Login(LoginDto loginModel)
         {
