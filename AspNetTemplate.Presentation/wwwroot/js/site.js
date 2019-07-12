@@ -24,8 +24,10 @@
     Expense: {
         LoadAllUserExpense: function (tableSelector) {
             $(tableSelector).DataTable({
-                "ajax": '/account/LoadAllUserExpenses',
-                "dataSrc": "",
+                ajax: {
+                    url: '/account/LoadAllUserExpenses',
+                    dataSrc : ''
+                },
                 "columns": [
                     { data: 'FileName' },
                     { data: 'Description' },

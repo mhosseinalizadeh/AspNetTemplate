@@ -5,15 +5,18 @@
 @section Styles{ 
 
     <link rel="stylesheet" href="~/lib/DataTables/datatables.min.css" />
+    <link rel="stylesheet" href="~/lib/DataTables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css" />
 }
 @section Scripts {
     <script src="~/lib/DataTables/datatables.min.js"></script>
+    <script src="~/lib/DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
+    <script src="~/lib/DataTables/DataTables-1.10.18/js/dataTables.bootstrap4.min.js"></script>
     <script src="~/js/pages/ViewExpenses/viewexpenses.js"></script>
 }
 
 
 <div class="row">
-    <table id="expenses" class="display" style="width:100%">
+    <table id="expenses" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <tr>
                 <th>File Name</th>
