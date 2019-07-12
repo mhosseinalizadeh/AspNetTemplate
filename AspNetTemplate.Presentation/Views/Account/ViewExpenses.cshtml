@@ -1,0 +1,38 @@
+﻿@addTagHelper *, JqueryDataTables.ServerSide.AspNetCoreWeb
+
+
+
+@section Styles{ 
+
+    <link rel="stylesheet" href="~/lib/DataTables/datatables.min.css" />
+}
+@section Scripts {
+    <script src="~/lib/DataTables/datatables.min.js"></script>
+    <script src="~/js/pages/ViewExpenses/viewexpenses.js"></script>
+}
+
+
+<div class="row">
+    <table id="expenses" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>File Name</th>
+                <th>Description</th>
+                <th>Upload Date</th>
+                <th>State</th>
+                <th>State Description</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>File Name</th>
+                <th>Description</th>
+                <th>Upload Date</th>
+                <th>State</th>
+                <th>State Description</th>
+                <th></th>
+            </tr>
+        </tfoot>
+    </table>
+</div>

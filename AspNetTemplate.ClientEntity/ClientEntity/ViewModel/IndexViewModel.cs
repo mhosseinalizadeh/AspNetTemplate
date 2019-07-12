@@ -5,7 +5,7 @@ using System.Text;
 
 namespace AspNetTemplate.ClientEntity.ViewModel
 {
-    public class IndexViewModel
+    public class IndexViewModel : BaseViewModel
     {
         public IEnumerable<User> Users;
     }

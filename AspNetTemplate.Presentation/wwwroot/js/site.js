@@ -21,7 +21,22 @@
             });
         }
     },
-
+    Expense: {
+        LoadAllUserExpense: function (tableSelector) {
+            $(tableSelector).DataTable({
+                "ajax": '/account/LoadAllUserExpenses',
+                "dataSrc": "",
+                "columns": [
+                    { data: 'FileName' },
+                    { data: 'Description' },
+                    { data: 'UploadDate' },
+                    { data: 'State' },
+                    { data: 'StateDescription' },
+                    { data: 'Path' }
+                ]
+            });
+        }
+    },
     Ajax: {
         Post: function (url, dataObj, then, always) {
             if (!url) {

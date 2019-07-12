@@ -28,7 +28,7 @@ H:\Omid\prj\MyApp\MyApp\AspNetTemplate.ApplicationService\ApplicationService\obj
 H:\Omid\prj\MyApp\MyApp\AspNetTemplate.ApplicationService\ApplicationService\obj\Debug\netcoreapp2.2\AspNetTemplate.ApplicationService.pdb
 H:\Omid\prj\MyApp\MyApp\AspNetTemplate.ApplicationService\ApplicationService\bin\Debug\netcoreapp2.2\AspNetTemplate.ClientEntity.dll
 H:\Omid\prj\MyApp\MyApp\AspNetTemplate.ApplicationService\ApplicationService\bin\Debug\netcoreapp2.2\AspNetTemplate.CommonService.dll
-H:\Omid\prj\MyApp\MyApp\AspNetTemplate.ApplicationService\ApplicationService\bin\Debug\netcoreapp2.2\Microsoft.Extensions.Caching.Abstractions.dll
 H:\Omid\prj\MyApp\MyApp\AspNetTemplate.ApplicationService\ApplicationService\bin\Debug\netcoreapp2.2\AspNetTemplate.ClientEntity.pdb
 H:\Omid\prj\MyApp\MyApp\AspNetTemplate.ApplicationService\ApplicationService\bin\Debug\netcoreapp2.2\AspNetTemplate.CommonService.pdb
-H:\Omid\prj\MyApp\MyApp\AspNetTemplate.ApplicationService\ApplicationService\bin\Debug\netcoreapp2.2\Microsoft.Extensions.Caching.Abstractions.xml
+H:\Omid\prj\MyApp\MyApp\AspNetTemplate.ApplicationService\ApplicationService\bin\Debug\netcoreapp2.2\Microsoft.Extensions.Hosting.dll
+H:\Omid\prj\MyApp\MyApp\AspNetTemplate.ApplicationService\ApplicationService\bin\Debug\netcoreapp2.2\Microsoft.Extensions.Hosting.xml

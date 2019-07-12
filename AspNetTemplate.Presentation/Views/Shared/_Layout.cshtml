@@ -1,5 +1,5 @@
 ﻿@using System.Security.Claims;
-@inject  AspNetTemplate.CommonService.ILocalizationService Localizer
+@inject AspNetTemplate.CommonService.ILocalizationService Localizer
 @{
     var UserRole = User.Claims.Where(c => c.Type == ClaimTypes.Role).Select(c => c.Value).SingleOrDefault();
     var UserName = User.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault();
@@ -23,6 +23,7 @@
               integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" />
     </environment>
     <link rel="stylesheet" href="~/css/toastr.css" />
+    @RenderSection("Styles", required: false)
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
@@ -40,26 +41,42 @@
                             <li class="nav-item active">
                                 <a class="nav-link" href="/">@Localizer.Localize("Home")</a>
                             </li>
-                            <li class="nav-item">
-                                @if (UserIsAuthenticated)
-                                {
-                                    @switch (UserRole)
-                                    {
-                                        case "Employee":
-                                <a class="nav-link" href="/account/addexpense">@Localizer.Localize("Upload An Expense")</a>
-                                            break;
-                                        case "TeamLead":
-                                <a class="nav-link" href="/account/manageexpence">@Localizer.Localize("Manage Expenses")</a>
-                                            break;
-                                        case "Finance":
-                                <a class="nav-link" href="/account/reportexpence">@Localizer.Localize("Expenses Report")</a>
-                                            break;
-                                        default:
-                                            break;
-                                    }
-                                }
 
+                            @if (UserIsAuthenticated)
+                            {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Manage Expenses
+                                </a>
+                                @switch (UserRole)
+                                {
+                                    case "Employee":
+
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" href="/account/addexpense">@Localizer.Localize("Upload An Expense")</a>
+                                            <a class="dropdown-item" href="/account/viewexpenses">@Localizer.Localize("View Expenses")</a>
+                                        </div>
+                                        break;
+                                    case "TeamLead":
+
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" href="/account/manageexpence">@Localizer.Localize("Manage Expenses")</a>
+                                        </div>
+                                        break;
+                                    case "Finance":
+
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" href="/account/reportexpence">@Localizer.Localize("Expenses Report")</a>
+                                        </div>
+                                        
+                                        break;
+                                    default:
+                                        break;
+                                }
                             </li>
+                            }
+
+
                             @if (UserIsAuthenticated)
                             {
                                 <li><a class="nav-link" href="/account/logout">@Localizer.Localize("Log out")</a></li>
@@ -95,25 +112,11 @@
         </div>
     </footer>
 
-    <environment include="Development">
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
-        <script src="~/lib/toastr.min.js"></script>
-    </environment>
-    <environment exclude="Development">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
-                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                asp-fallback-test="window.jQuery"
-                crossorigin="anonymous"
-                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
-        </script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"
-                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-                crossorigin="anonymous"
-                integrity="sha256-E/V4cWE4qvAeO5MOhjtGtqDzPndRO1LBk8lJ/PR7CA4=">
-        </script>
-    </environment>
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script src="~/lib/toastr.min.js"></script>
+
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     @RenderSection("Scripts", required: false)

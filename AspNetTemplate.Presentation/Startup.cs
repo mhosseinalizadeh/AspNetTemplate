@@ -12,17 +12,22 @@ using System.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.Caching.Memory;
 using AspNetTemplate.CommonService;
+using Microsoft.AspNetCore.Hosting.Internal;
+using AspNetTemplate.ApplicationService.AccountService;
+using JqueryDataTables.ServerSide.AspNetCoreWeb.DependencyInjection;
 
 namespace AspNetTemplate
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IHostingEnvironment hostingEnvironment)
         {
             Configuration = configuration;
+            HostingEnvironment = hostingEnvironment;
         }
 
         public IConfiguration Configuration { get; }
+        public IHostingEnvironment HostingEnvironment { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -52,17 +57,23 @@ namespace AspNetTemplate
             services.AddScoped<IUnitOfWork, DapperUnitOfWork>(provider => new DapperUnitOfWork(Configuration.GetConnectionString("DefaultConnection")));
 
             // Enable cookie authentication
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                    .AddCookie();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
 
             services.AddScoped<ILocalizationService, LocalizationService>();
             services.AddScoped<ICacheService, CacheService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ICryptographyService, CryptographyService>();
+            services.AddScoped<IFileService, FileService>();
+            services.AddScoped<IAccountService, AccountService>();
 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ILocalizationRepository, LocalizationRepository>();
+            services.AddScoped<IExpenseInfoRepository, ExpenseInfoRepository>();
 
+            services.AddSingleton<FileServiceData>(provider => new FileServiceData {
+                ExpensePhotoPath = HostingEnvironment.WebRootPath + "\\expensefiles\\"
+            });
+            services.AddJqueryDataTables();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
