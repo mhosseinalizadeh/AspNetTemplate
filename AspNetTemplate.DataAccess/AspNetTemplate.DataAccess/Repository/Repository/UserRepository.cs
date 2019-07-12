@@ -56,6 +56,10 @@ namespace AspNetTemplate.DataAccess.Repository.Repository
                 {
                     userEntry = user;
                     userEntry.Roles = new List<Role>();
+
+                    if (userole != null && !user.Roles.Any(c => c.Id == userole.RoleId) && role != null)
+                        userEntry.Roles.Add(role);
+
                     userDic.Add(user.Id, userEntry);
                 }
 

@@ -39,6 +39,18 @@ namespace AspNetTemplate.Presentation.Controllers
             return Json(new ServiceResult(ServiceResultStatus.Success, user));
         }
 
+        [Route("/account/logout")]
+        public async Task<IActionResult> Logout() {
+            await HttpContext.SignOutAsync();
+            Response.Redirect("/");
+            return Json(null);
+        }
+
+        [Route("/account/addexpense")]
+        public async Task<IActionResult> AddExpense() {
+
+        }
+
         ClaimsPrincipal getPrincipal(User user) {
             var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
             identity.AddClaim(new Claim(ClaimTypes.Name, user.FirstName));

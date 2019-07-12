@@ -16,7 +16,8 @@
     User: {
         Login : function (formData) {
             AppManager.Ajax.Post("/account/login", formData, function (result) {
-                
+                if (result && result.status == 1)
+                    location.reload();
             });
         }
     },
@@ -55,6 +56,10 @@
                     }
                 }
             }).always(function (data) {
+                if (data.status == 500) {
+                    AppManager.Notification.Error(data.statusText);
+                }
+
                 if (data && typeof (always) == "function") {
                     always(data);
                 }
@@ -79,6 +84,9 @@
                         }
                     }
                 }).always(function (data) {
+                    if (data.status == 500) {
+                        AppManager.Notification.Error(data.statusText);
+                    }
                     if (data && typeof (always) == "function") {
                         always(data);
                     }

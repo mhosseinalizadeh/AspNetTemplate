@@ -9,21 +9,26 @@
     <h1 class="display-4">Welcome</h1>
     <p>You can find the source of this project in <a href="https://github.com/mhosseinalizadeh/AspNetTemplate">this repository</a>.</p>
 
-    <div class="row justify-content-md-center">
-        <div class="col col-6">
-            <form>
-                <div class="form-group">
-                    <label for="email" class="float-left">Email address</label>
-                    <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                </div>
-                <div class="form-group">
-                    <label for="password" class="float-left">Password</label>
-                    <input type="password" name="password" class="form-control" id="password" placeholder="Password">
-                </div>
-                <button id="btn-login" type="submit" class="btn btn-primary">Login</button>
-            </form>
 
-        </div>
+    <div class="row justify-content-md-center">
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <div class="col col-md-6 col-sm-12">
+                <form>
+                    <div class="form-group">
+                        <label for="email" class="float-left">Email address</label>
+                        <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="float-left">Password</label>
+                        <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+                    </div>
+                    <button id="btn-login" type="submit" class="btn btn-primary">Login</button>
+                </form>
+
+            </div>
+        }
+
     </div>
 </div>

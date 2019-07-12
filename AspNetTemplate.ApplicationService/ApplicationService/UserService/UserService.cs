@@ -48,5 +48,7 @@ namespace AspNetTemplate.ApplicationService.UserService
         {
             return _cryptographyService.ComputeHash(password);
         }
+
+
     }
 }
