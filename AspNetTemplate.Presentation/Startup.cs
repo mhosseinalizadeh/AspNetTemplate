@@ -15,6 +15,8 @@ using AspNetTemplate.CommonService;
 using Microsoft.AspNetCore.Hosting.Internal;
 using AspNetTemplate.ApplicationService.AccountService;
 using JqueryDataTables.ServerSide.AspNetCoreWeb.DependencyInjection;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using AspNetTemplate.ClientEntity;
 
 namespace AspNetTemplate
 {
@@ -38,14 +40,13 @@ namespace AspNetTemplate
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
+            IConfigurationSection appSettings = Configuration.GetSection("AppSettings");
+            services.Configure<AppSettings>(appSettings);
             services.AddMemoryCache();
             services.AddSingleton<IMemoryCache>(provider => new MemoryCache(new MemoryCacheOptions
             {
                 SizeLimit = 20
             }));
-
-           
 
             services.AddScoped<IDbTransaction>(provider =>
             {
@@ -56,7 +57,6 @@ namespace AspNetTemplate
 
             services.AddScoped<IUnitOfWork, DapperUnitOfWork>(provider => new DapperUnitOfWork(Configuration.GetConnectionString("DefaultConnection")));
 
-            // Enable cookie authentication
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
 
             services.AddScoped<ILocalizationService, LocalizationService>();
@@ -65,11 +65,13 @@ namespace AspNetTemplate
             services.AddScoped<ICryptographyService, CryptographyService>();
             services.AddScoped<IFileService, FileService>();
             services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IEmailService, EmailService>();
 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ILocalizationRepository, LocalizationRepository>();
             services.AddScoped<IExpenseInfoRepository, ExpenseInfoRepository>();
 
+            services.AddTransient<IActionContextAccessor, ActionContextAccessor>();
             services.AddSingleton<FileServiceData>(provider => new FileServiceData {
                 ExpensePhotoPath = HostingEnvironment.WebRootPath + "\\expensefiles\\"
             });

@@ -2,6 +2,9 @@
 using AspNetTemplate.CommonService;
 using AspNetTemplate.DataAccess.Repository.IRepository;
 using AspNetTemplate.DomainEntity;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,18 +19,21 @@ namespace AspNetTemplate.ApplicationService.AccountService
         private IEmailService _emailService;
         private IExpenseInfoRepository _expenseInfoRepository;
         private IUserRepository _userRepository;
+        private IActionContextAccessor _actionContextAccessor;
 
         public AccountService(ILocalizationService localizationService,
             IFileService fileService,
             IExpenseInfoRepository expenseInfoRepository,
             IEmailService emailService,
-            IUserRepository userRepository)
+            IUserRepository userRepository,
+            IActionContextAccessor actionContextAccessor)
         {
             _localizer = localizationService;
             _fileService = fileService;
             _expenseInfoRepository = expenseInfoRepository;
             _emailService = emailService;
             _userRepository = userRepository;
+            _actionContextAccessor = actionContextAccessor;
         }
 
         public async Task<ServiceResult> AcceptExpense(int id, int userid, string userRole)
@@ -80,16 +86,19 @@ namespace AspNetTemplate.ApplicationService.AccountService
                     OwnerId = model.UserId,
                     Path = filePath,
                     State = ExpenseState.UnApproved.ToString(),
+                    UploadDate = DateTime.Now,
                     Description = model.Description
                 };
                 await _expenseInfoRepository.AddAsync(expense);
 
-                var financeUser = await _userRepository.FindFinanceUser();
+                var user = await _userRepository.FindAsync(model.UserId);
+
+                var financeUsers = await _userRepository.FindFinanceUser();
                 var tasks = new List<Task>();
-                foreach (var user in financeUser)
+                foreach (var financeUser in financeUsers)
                 {
-                    var message = createMailBody(getFormattedExpense(expense));
-                    tasks.Add(_emailService.SendEmailAsync(user.Email, _localizer.Localize("A spense submitted"), ""));
+                    var message = createMailBody(getFormattedExpense(expense), user);
+                    tasks.Add(_emailService.SendEmailAsync(financeUser.Email, _localizer.Localize("A spense submitted"), message));
                 }
                 await Task.WhenAll(tasks);
             }
@@ -98,9 +107,17 @@ namespace AspNetTemplate.ApplicationService.AccountService
 
         }
 
-        private string createMailBody(ExpenseDatatableDto expenseDatatableDto)
+        private string createMailBody(ExpenseDatatableDto expenseDatatableDto, User user)
         {
-            throw new NotImplementedException();
+
+            var request = _actionContextAccessor.ActionContext.HttpContext.Request;
+            var absoluteUrl = GetAbsoluteUrl(request);
+
+            var htmlStr = "";
+            htmlStr += $"<div>An expense file uploaded by {user.FirstName} {user.LastName} at {expenseDatatableDto.UploadDate}.</div>" +
+                $"<div>View uploaded expence: <a target='_blank' href='{absoluteUrl}/account/viewexpense/{expenseDatatableDto.Id}'>View File</a></div>";
+
+            return htmlStr;
         }
 
         public async Task<ServiceResult> GetExpenseAsync(int id, int userid, string userRole)
@@ -162,6 +179,15 @@ namespace AspNetTemplate.ApplicationService.AccountService
                 UploadDate = item.UploadDate.ToString("MM/dd/yyy HH:mm:ss")
             };
             return expenseDto;
+        }
+
+        private string GetAbsoluteUrl(HttpRequest request)
+        {
+            return string.Concat(
+                        request.Scheme,
+                        "://",
+                        request.Host.ToUriComponent(),
+                        request.PathBase.ToUriComponent());
         }
 
     }

@@ -31,7 +31,13 @@ namespace AspNetTemplate.DataAccess.Repository.Repository
 
         public Task<User> FindAsync(int key)
         {
-            throw new NotImplementedException();
+            DynamicParameters parameter = new DynamicParameters();
+            parameter.Add("@key", key, DbType.Int32, ParameterDirection.Input);
+
+            var sql = $"SELECT * FROM {_tblName} " +
+                $"WHERE Id = @key";
+
+            return QuerySingleOrDefaultAsync<User>(sql, parameter);
         }
 
         public Task<IEnumerable<User>> FindByMailAsync(string email)
