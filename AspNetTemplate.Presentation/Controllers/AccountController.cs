@@ -91,6 +91,12 @@ namespace AspNetTemplate.Presentation.Controllers
             return View();
         }
 
+        [Route("/account/manageexpenses")]
+        public async Task<IActionResult> ManageExpenses()
+        {
+            return View();
+        }
+
         [Route("/account/LoadAllUserExpenses")]
         [HttpGet]
         public async Task<IActionResult> LoadAllUserExpenses() {
@@ -99,6 +105,63 @@ namespace AspNetTemplate.Presentation.Controllers
             return Json(results.Result);
         }
 
+
+        [Route("/account/LoadAllExpenses")]
+        [HttpGet]
+        public async Task<IActionResult> LoadAllExpenses()
+        {
+            var userid = GetUserId();
+            var results = await _accountService.LoadAllExpenses();
+            return Json(results.Result);
+        }
+
+        [Route("/account/acceptexpense")]
+        [HttpPost]
+        public async Task<IActionResult> AcceptExpense(int id)
+        {
+            var userid = GetUserId();
+            var userRole = GetUserRole();
+            var results = await _accountService.AcceptExpense(id, userid, userRole);
+            if (results.Status == ServiceResultStatus.Success)
+            {
+                _unitOfWork.Commit();
+            }
+            return Json(results);
+        }
+
+        [Route("/account/declineexpense")]
+        [HttpPost]
+        public async Task<IActionResult> DeclineExpense(int id, string stateDescription)
+        {
+            var userid = GetUserId();
+            var userRole = GetUserRole();
+            var results = await _accountService.DeclineExpense(id, userid, userRole, stateDescription);
+            if (results.Status == ServiceResultStatus.Success)
+            {
+                _unitOfWork.Commit();
+            }
+            return Json(results);
+        }
+
+
+        [Route("/account/viewexpensefile/{id}")]
+        [HttpGet]
+        public async Task<IActionResult> ViewExpenseFile(int id)
+        {
+            var userid = GetUserId();
+            var userRole = GetUserRole();
+            var result = await _accountService.GetExpenseFile(id, userid, userRole);
+            if (result.Status == ServiceResultStatus.Success) {
+                var expense = (ExpenseInfo)result.Result;
+                return File(expense.Content, "application/octet-stream", expense.FileName);
+            }
+            return File(new byte[1], "application/octet-stream", "denied.png");
+        }
+
+        private string GetUserRole()
+        {
+            return User.Claims.Where(c => c.Type == ClaimTypes.Role).Select(c => c.Value).SingleOrDefault();
+        }
 
         int GetUserId() {
             int userid;

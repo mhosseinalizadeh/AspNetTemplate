@@ -24,6 +24,8 @@
     </environment>
     <link rel="stylesheet" href="~/css/toastr.css" />
     @RenderSection("Styles", required: false)
+
+    <link rel="stylesheet" href="~/css/lightbox.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
@@ -54,19 +56,19 @@
 
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                             <a class="dropdown-item" href="/account/addexpense">@Localizer.Localize("Upload An Expense")</a>
-                                            <a class="dropdown-item" href="/account/viewexpenses">@Localizer.Localize("View Expenses")</a>
+                                            <a class="dropdown-item" href="/account/viewexpenses">@Localizer.Localize("View My Expenses")</a>
                                         </div>
                                         break;
                                     case "TeamLead":
 
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="/account/manageexpence">@Localizer.Localize("Manage Expenses")</a>
+                                            <a class="dropdown-item" href="/account/manageexpenses">@Localizer.Localize("Manage Expenses")</a>
                                         </div>
                                         break;
                                     case "Finance":
 
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="/account/reportexpence">@Localizer.Localize("Expenses Report")</a>
+                                            <a class="dropdown-item" href="/account/reportexpenses">@Localizer.Localize("Expenses Report")</a>
                                         </div>
                                         
                                         break;
@@ -116,7 +118,7 @@
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
     <script src="~/lib/toastr.min.js"></script>
-
+    <script src="~/js/lightbox.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     @RenderSection("Scripts", required: false)

@@ -10,10 +10,11 @@ namespace AspNetTemplate.DomainEntity
         public string Path { get; set; }
         public string FileName { get; set; }
         public int OwnerId { get; set; }
-        public ExpenseState State { get; set; }
+        public string State { get; set; }
         public string Description { get; set; }
         public string StateDescription { get; set; }
         public DateTime UploadDate { get; set; }
+        public byte[] Content { get; set; }
  
         public User Owner { get; set; }
     }

@@ -2,13 +2,8 @@
 using AspNetTemplate.CommonService;
 using AspNetTemplate.DataAccess.Repository.IRepository;
 using AspNetTemplate.DomainEntity;
-using JqueryDataTables.ServerSide.AspNetCoreWeb.Infrastructure;
-using JqueryDataTables.ServerSide.AspNetCoreWeb.Models;
-using Microsoft.Extensions.Hosting.Internal;
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace AspNetTemplate.ApplicationService.AccountService
@@ -17,14 +12,54 @@ namespace AspNetTemplate.ApplicationService.AccountService
     {
         private ILocalizationService _localizer;
         private IFileService _fileService;
+        private IEmailService _emailService;
         private IExpenseInfoRepository _expenseInfoRepository;
-        public AccountService(ILocalizationService localizationService, 
+        private IUserRepository _userRepository;
+
+        public AccountService(ILocalizationService localizationService,
             IFileService fileService,
-            IExpenseInfoRepository expenseInfoRepository)
+            IExpenseInfoRepository expenseInfoRepository,
+            IEmailService emailService,
+            IUserRepository userRepository)
         {
             _localizer = localizationService;
             _fileService = fileService;
             _expenseInfoRepository = expenseInfoRepository;
+            _emailService = emailService;
+            _userRepository = userRepository;
+        }
+
+        public async Task<ServiceResult> AcceptExpense(int id, int userid, string userRole)
+        {
+            if (userRole != "TeamLead")
+            {
+                return new ServiceResult(ServiceResultStatus.Exception, null, _localizer.Localize("Permission Denied!"));
+            }
+
+            var expense = await _expenseInfoRepository.FindAsync(id);
+
+            expense.State = "Approved";
+            expense.StateDescription = "";
+            await _expenseInfoRepository.UpdateAsync(expense);
+
+            return new ServiceResult(ServiceResultStatus.Success, null, _localizer.Localize("The expense approved successfully."));
+        }
+
+        public async Task<ServiceResult> DeclineExpense(int id, int userid, string userRole, string stateDescription)
+        {
+            if (userRole != "TeamLead")
+            {
+                return new ServiceResult(ServiceResultStatus.Exception, null, _localizer.Localize("Permission Denied!"));
+            }
+
+            var expense = await _expenseInfoRepository.FindAsync(id);
+
+            expense.State = "Declined";
+            expense.StateDescription = stateDescription;
+
+            await _expenseInfoRepository.UpdateAsync(expense);
+
+            return new ServiceResult(ServiceResultStatus.Success, null, _localizer.Localize("The expense declined!"));
         }
 
         public async Task<ServiceResult> AddExpense(ExpenseUploadDto model)
@@ -33,8 +68,7 @@ namespace AspNetTemplate.ApplicationService.AccountService
 
             if (model.ExpensePhoto.Length > 0)
             {
-                var filename = Guid.NewGuid().ToString();
-                
+
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
                     await model.ExpensePhoto.CopyToAsync(stream);
@@ -44,47 +78,76 @@ namespace AspNetTemplate.ApplicationService.AccountService
                 {
                     FileName = model.ExpensePhoto.FileName,
                     OwnerId = model.UserId,
-                    Path = filename,
-                    State = ExpenseState.UnApproved,
+                    Path = filePath,
+                    State = ExpenseState.UnApproved.ToString(),
                     Description = model.Description
                 });
+
+                var financeUser = await _userRepository.FindFinanceUser();
+
+                await _emailService.SendEmailAsync()
             }
 
             return new ServiceResult(ServiceResultStatus.Success, null, _localizer.Localize("Your expense file was uploaded successfully."));
 
         }
 
+        public async Task<ServiceResult> GetExpenseAsync(int id, int userid, string userRole)
+        {
+            var expense = await _expenseInfoRepository.FindAsync(id);
+            if (expense.OwnerId == userid || userRole != "Employee")
+            {
+                return new ServiceResult(ServiceResultStatus.Success, expense);
+            }
+
+            return new ServiceResult(ServiceResultStatus.Exception, null, _localizer.Localize("Permission Denied!"));
+        }
+
+        public async Task<ServiceResult> GetExpenseFile(int id, int userid, string userRole)
+        {
+            var expense = await _expenseInfoRepository.FindAsync(id);
+            if (expense != null && (expense.OwnerId == userid || userRole != "Employee"))
+            {
+                expense.Content = await File.ReadAllBytesAsync(expense.Path);
+                return new ServiceResult(ServiceResultStatus.Success, expense);
+            }
+
+            return new ServiceResult(ServiceResultStatus.Exception, null, _localizer.Localize("Permission Denied!"));
+        }
+
+        public async Task<ServiceResult> LoadAllExpenses()
+        {
+            var res = await _expenseInfoRepository.AllAsync();
+            var formattedData = getFormattedExpenses(res);
+            return new ServiceResult(ServiceResultStatus.Success, formattedData);
+        }
+
         public async Task<ServiceResult> LoadAllUserExpenses(int userid)
         {
             var res = await _expenseInfoRepository.LoadAllUserExpenses(userid);
-            return new ServiceResult(ServiceResultStatus.Success, res);
+            var formattedData = getFormattedExpenses(res);
+            return new ServiceResult(ServiceResultStatus.Success, formattedData);
         }
 
-        public async Task<JqueryDataTablesPagedResults<ExpenseDatatableDto>> LoadExpenses(JqueryDataTablesParameters param)
+        private List<ExpenseDatatableDto> getFormattedExpenses(IEnumerable<ExpenseInfo> res)
         {
-
-
-            var size = 0;
-
-            var res = await _expenseInfoRepository.AllAsync();
-
-            size = res.Count();
-            var dtoResult = res.Select(c => new ExpenseDatatableDto()
+            var list = new List<ExpenseDatatableDto>();
+            foreach (var item in res)
             {
-                Description = c.Description,
-                File = c.Path,
-                FileName = c.FileName,
-                Id = c.Id,
-                State = c.State.ToString(),
-                StateDescription = c.StateDescription,
-                UploadDate = c.UploadDate
-            });
-
-            return new JqueryDataTablesPagedResults<ExpenseDatatableDto>
-            {
-                Items = dtoResult,
-                TotalSize = size
-            };
+                var listItem = new ExpenseDatatableDto()
+                {
+                    Description = item.Description,
+                    FileName = item.FileName,
+                    Id = item.Id,
+                    Link = $"/account/viewexpensefile/{item.Id}",
+                    State = item.State,
+                    StateDescription = item.StateDescription,
+                    UploadDate = item.UploadDate.ToString("MM/dd/yyy HH:mm:ss")
+                };
+                list.Add(listItem);
+            }
+            return list;
         }
+
     }
 }

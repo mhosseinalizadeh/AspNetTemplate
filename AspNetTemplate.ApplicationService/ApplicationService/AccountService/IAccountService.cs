@@ -11,5 +11,10 @@ namespace AspNetTemplate.ApplicationService.AccountService
     {
         Task<ServiceResult> AddExpense(ExpenseUploadDto model);
         Task<ServiceResult> LoadAllUserExpenses(int userid);
+        Task<ServiceResult> GetExpenseAsync(int id, int userid, string userRole);
+        Task<ServiceResult> GetExpenseFile(int id, int userid, string userRole);
+        Task<ServiceResult> LoadAllExpenses();
+        Task<ServiceResult> AcceptExpense(int id, int userid, string userRole);
+        Task<ServiceResult> DeclineExpense(int id, int userid, string userRole, string stateDescription);
     }
 }

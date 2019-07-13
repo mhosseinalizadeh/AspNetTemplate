@@ -9,5 +9,6 @@ namespace AspNetTemplate.DataAccess.Repository.IRepository
     public interface IUserRepository : IRepository<User, int>
     {
         Task<IEnumerable<User>> FindByMailAsync(string email);
+        Task<IEnumerable<User>> FindFinanceUser();
     }
 }

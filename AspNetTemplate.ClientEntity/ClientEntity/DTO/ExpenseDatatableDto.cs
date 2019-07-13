@@ -10,30 +10,16 @@ namespace AspNetTemplate.ClientEntity.DTO
     {
         public int Id { get; set; }
 
-        [SearchableString]
-        [Sortable]
-        [DisplayName("File Name")]
         public string FileName { get; set; }
 
-        [SearchableString]
-        [Sortable]
-        [DisplayName("Description")]
         public string Description { get; set; }
 
-        [SearchableDateTime]
-        [Sortable(Default = true)]
-        [DisplayName("Start Date")]
-        public DateTime UploadDate { get; set; }
+        public string UploadDate { get; set; }
 
-        [Sortable]
-        [DisplayName("State")]
         public string State { get; set; }
 
-        [SearchableString]
-        [DisplayName("State Description")]
         public string StateDescription { get; set; }
 
-        [DisplayName("File")]
-        public string File { get; set; }
+        public string Link { get; set; }
     }
 }

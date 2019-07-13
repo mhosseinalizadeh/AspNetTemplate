@@ -34,13 +34,18 @@ namespace AspNetTemplate.DataAccess.Repository.Repository
 
         public Task<IEnumerable<ExpenseInfo>> AllAsync()
         {
-            var sql = $"SELECT * FROM {_tblName}";
+            var sql = $"SELECT * FROM {_tblName} " +
+                $"order by id desc";
             return QueryAsync<ExpenseInfo>(sql);
         }
 
         public Task<ExpenseInfo> FindAsync(int key)
         {
-            throw new NotImplementedException();
+            var sql = $"SELECT * FROM {_tblName} " +
+                $"WHERE Id = @key";
+            DynamicParameters parameter = new DynamicParameters();
+            parameter.Add("@key", key, DbType.Int32, ParameterDirection.Input);
+            return QuerySingleOrDefaultAsync<ExpenseInfo>(sql, parameter);
         }
 
         public Task<IEnumerable<ExpenseInfo>> LoadAllUserExpenses(int userid)
@@ -60,7 +65,15 @@ namespace AspNetTemplate.DataAccess.Repository.Repository
 
         public Task UpdateAsync(ExpenseInfo entity)
         {
-            throw new NotImplementedException();
+            var sql = $"UPDATE {_tblName} SET State = @state, Description = @description, StateDescription = @stateDescription " +
+                $"WHERE Id = @id";
+            DynamicParameters parameter = new DynamicParameters();
+            parameter.Add("@state", entity.State, DbType.String, ParameterDirection.Input);
+            parameter.Add("@id", entity.Id, DbType.Int32, ParameterDirection.Input);
+            parameter.Add("@description", entity.Description, DbType.String, ParameterDirection.Input);
+            parameter.Add("@stateDescription", entity.StateDescription, DbType.String, ParameterDirection.Input);
+
+            return ExecuteScalarAsync<ExpenseInfo>(sql, parameter);
         }
     }
 }
