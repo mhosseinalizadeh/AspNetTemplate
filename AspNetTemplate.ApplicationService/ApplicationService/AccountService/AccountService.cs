@@ -2,6 +2,7 @@
 using AspNetTemplate.CommonService;
 using AspNetTemplate.DataAccess.Repository.IRepository;
 using AspNetTemplate.DomainEntity;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -73,23 +74,33 @@ namespace AspNetTemplate.ApplicationService.AccountService
                 {
                     await model.ExpensePhoto.CopyToAsync(stream);
                 }
-
-                await _expenseInfoRepository.AddAsync(new ExpenseInfo()
+                var expense = new ExpenseInfo()
                 {
                     FileName = model.ExpensePhoto.FileName,
                     OwnerId = model.UserId,
                     Path = filePath,
                     State = ExpenseState.UnApproved.ToString(),
                     Description = model.Description
-                });
+                };
+                await _expenseInfoRepository.AddAsync(expense);
 
                 var financeUser = await _userRepository.FindFinanceUser();
-
-                await _emailService.SendEmailAsync()
+                var tasks = new List<Task>();
+                foreach (var user in financeUser)
+                {
+                    var message = createMailBody(getFormattedExpense(expense));
+                    tasks.Add(_emailService.SendEmailAsync(user.Email, _localizer.Localize("A spense submitted"), ""));
+                }
+                await Task.WhenAll(tasks);
             }
 
             return new ServiceResult(ServiceResultStatus.Success, null, _localizer.Localize("Your expense file was uploaded successfully."));
 
+        }
+
+        private string createMailBody(ExpenseDatatableDto expenseDatatableDto)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<ServiceResult> GetExpenseAsync(int id, int userid, string userRole)
@@ -134,19 +145,23 @@ namespace AspNetTemplate.ApplicationService.AccountService
             var list = new List<ExpenseDatatableDto>();
             foreach (var item in res)
             {
-                var listItem = new ExpenseDatatableDto()
-                {
-                    Description = item.Description,
-                    FileName = item.FileName,
-                    Id = item.Id,
-                    Link = $"/account/viewexpensefile/{item.Id}",
-                    State = item.State,
-                    StateDescription = item.StateDescription,
-                    UploadDate = item.UploadDate.ToString("MM/dd/yyy HH:mm:ss")
-                };
-                list.Add(listItem);
+                list.Add(getFormattedExpense(item));
             }
             return list;
+        }
+
+        private ExpenseDatatableDto getFormattedExpense(ExpenseInfo item) {
+            var expenseDto = new ExpenseDatatableDto()
+            {
+                Description = item.Description,
+                FileName = item.FileName,
+                Id = item.Id,
+                Link = $"/account/viewexpensefile/{item.Id}",
+                State = item.State,
+                StateDescription = item.StateDescription,
+                UploadDate = item.UploadDate.ToString("MM/dd/yyy HH:mm:ss")
+            };
+            return expenseDto;
         }
 
     }

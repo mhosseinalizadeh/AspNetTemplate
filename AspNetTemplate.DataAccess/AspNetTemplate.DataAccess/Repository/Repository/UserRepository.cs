@@ -36,12 +36,8 @@ namespace AspNetTemplate.DataAccess.Repository.Repository
 
         public Task<IEnumerable<User>> FindByMailAsync(string email)
         {
-            //string query = $"SELECT * FROM {_tblName} WHERE Email = @email";
             DynamicParameters parameter = new DynamicParameters();
             parameter.Add("@email", email, DbType.String, ParameterDirection.Input);
-            //return QuerySingleOrDefaultAsync<User>(query, parameter);
-
-
 
             string query = $"SELECT * FROM {_tblName} AS u " +
                             $"LEFT JOIN UserRole AS ur ON u.id = ur.userId " +
@@ -65,6 +61,31 @@ namespace AspNetTemplate.DataAccess.Repository.Repository
 
                 return userEntry;
             }, parameter, "id, id, id");
+        }
+
+        public Task<IEnumerable<User>> FindFinanceUser()
+        {
+            int roleId = 3;
+            DynamicParameters parameter = new DynamicParameters();
+            parameter.Add("@roleId", roleId, DbType.Int32, ParameterDirection.Input);
+
+            string query = $"SELECT * FROM {_tblName} AS u " +
+                            $"LEFT JOIN UserRole AS ur ON u.id = ur.userId " +
+                            $"WHERE ur.RoleId = @roleId";
+
+            var userDic = new Dictionary<int, User>();
+            return QueryAsync<User, UserRole>(query, (user, userole) => {
+
+                User userEntry;
+                if (!userDic.TryGetValue(user.Id, out userEntry))
+                {
+                    userEntry = user;
+
+                    userDic.Add(user.Id, userEntry);
+                }
+
+                return userEntry;
+            }, parameter, "id, id");
         }
 
         public Task RemoveAsync(int key)

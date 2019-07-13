@@ -5,10 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MailKit" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Primitives" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\AspNetTemplate.ClientEntity\ClientEntity\AspNetTemplate.ClientEntity.csproj" />
     <ProjectReference Include="..\..\AspNetTemplate.DataAccess\AspNetTemplate.DataAccess\AspNetTemplate.DataAccess.csproj" />
   </ItemGroup>
 
@@ -18,6 +20,9 @@
     </Reference>
     <Reference Include="Microsoft.Extensions.Caching.Abstractions">
       <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.extensions.caching.abstractions\2.2.0\lib\netstandard2.0\Microsoft.Extensions.Caching.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options">
+      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.extensions.options\2.2.0\lib\netstandard2.0\Microsoft.Extensions.Options.dll</HintPath>
     </Reference>
   </ItemGroup>
 
