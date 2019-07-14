@@ -9,7 +9,7 @@ namespace AspNetTemplate.ClientEntity
         {
             AddExpense,
             DeclineExpense,
-            ApprovedExpense
+            ApproveExpense
         }
 
         public enum State

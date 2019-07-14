@@ -11,7 +11,7 @@ namespace AspNetTemplate.ApplicationService.Helpers
         {
             var htmlStr = "";
             htmlStr += $"<div>An expense file by Id {notifyBody.ExpenseModel.Id} for {notifyBody.User.FirstName} {notifyBody.User.LastName} <b>was Approved</b></div>" +
-                $"<div>View approved expense: <a target='_blank' href='{notifyBody.AbsoluteUrl}/account/viewexpense/{notifyBody.ExpenseModel.Id}'>View File</a></div>";
+                $"<div>View approved expense: <a target='_blank' href='{notifyBody.AbsoluteUrl}/account/viewexpensefile/{notifyBody.ExpenseModel.Id}'>View File</a></div>";
 
             return htmlStr;
         }

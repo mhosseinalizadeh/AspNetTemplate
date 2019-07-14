@@ -75,6 +75,8 @@ namespace AspNetTemplate
             services.AddScoped<IExpenseInfoRepository, ExpenseInfoRepository>();
 
             services.AddScoped<AddExpenseNotifyBodyCreator>();
+            services.AddScoped<DeclineExpenseNotifyBodyCreator>();
+            services.AddScoped<ApproveExpenseNotifyBodyCreator>();
 
             services.AddTransient<Func<NotifyType, INotifyBodyCreator>>(serviceProvider => key =>
             {
@@ -84,7 +86,7 @@ namespace AspNetTemplate
                         return serviceProvider.GetService<AddExpenseNotifyBodyCreator>();
                     case NotifyType.DeclineExpense:
                         return serviceProvider.GetService<DeclineExpenseNotifyBodyCreator>();
-                    case NotifyType.ApprovedExpense:
+                    case NotifyType.ApproveExpense:
                         return serviceProvider.GetService<ApproveExpenseNotifyBodyCreator>();
                     default:
                         throw new NotImplementedException(); // or maybe return null, up to you

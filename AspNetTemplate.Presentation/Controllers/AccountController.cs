@@ -101,6 +101,12 @@ namespace AspNetTemplate.Presentation.Controllers
             return View();
         }
 
+        [Route("/account/reportexpenses")]
+        public async Task<IActionResult> ReportExpenses()
+        {
+            return View();
+        }
+
         [Route("/account/LoadAllUserExpenses")]
         [HttpGet]
         public async Task<IActionResult> LoadAllUserExpenses()

@@ -95,6 +95,10 @@ var AppManager = {
         LoadAllExpenses: function (tableSelector) {
             AppManager.Expense.ManageExpenseDatatable  = $(tableSelector).DataTable({
                 searching: false,
+                dom: 'Bfrtip',
+                buttons: [
+                    'excelHtml5'
+                ],
                 ajax: {
                     url: '/account/LoadAllExpenses',
                     dataSrc: ''
@@ -114,12 +118,6 @@ var AppManager = {
                         data: 'Link',
                         render: function (data, type, row, meta) {
                             return renderViewFile(data, row);
-                        }
-                    },
-                    {
-                        data: 'Id',
-                        render: function (data,type, row, meta) {
-                            return renderManageButtons(data, row);
                         }
                     }
                 ]

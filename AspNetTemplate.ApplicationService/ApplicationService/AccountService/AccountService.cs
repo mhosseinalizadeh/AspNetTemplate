@@ -49,7 +49,7 @@ namespace AspNetTemplate.ApplicationService.AccountService
 
             var expense = await UpdateExpense(id, State.Approved, "");
 
-            await notifyFinanceUser(NotifyType.ApprovedExpense, expense, userid);
+            await notifyFinanceUser(NotifyType.ApproveExpense, expense, userid);
 
             return new ServiceResult(ServiceResultStatus.Success, null, _localizer.Localize("The expense approved successfully."));
         }
@@ -195,7 +195,7 @@ namespace AspNetTemplate.ApplicationService.AccountService
                     return "A Spense Added";
                 case NotifyType.DeclineExpense:
                     return "A Spense Declined";
-                case NotifyType.ApprovedExpense:
+                case NotifyType.ApproveExpense:
                     return "A Spense Approved";
                 default:
                     return string.Empty;
