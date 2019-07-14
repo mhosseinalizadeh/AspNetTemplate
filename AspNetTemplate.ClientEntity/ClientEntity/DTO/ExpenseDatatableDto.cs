@@ -6,7 +6,7 @@ using System.Text;
 
 namespace AspNetTemplate.ClientEntity.DTO
 {
-    public class ExpenseDatatableDto
+    public class ExpenseDto
     {
         public int Id { get; set; }
 

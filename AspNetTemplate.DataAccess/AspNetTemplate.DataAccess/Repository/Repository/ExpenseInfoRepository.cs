@@ -19,7 +19,13 @@ namespace AspNetTemplate.DataAccess.Repository.Repository
 
         public Task AddAsync(ExpenseInfo entity)
         {
-            var sql = $"INSERT INTO {_tblName} VALUES (@path, @filename, @ownerid, @state, @description, @stateDescription, @uploadDate)";
+            throw new NotImplementedException();
+        }
+
+        public Task<int> AddAsyncById(ExpenseInfo entity)
+        {
+            var sql = $"INSERT INTO {_tblName} (Path, FileName, OwnerId, State, Description, StateDescription, UploadDate)" +
+                $" VALUES (@path, @filename, @ownerid, @state, @description, @stateDescription, @uploadDate) SELECT CAST(SCOPE_IDENTITY() as int";
             DynamicParameters parameter = new DynamicParameters();
             parameter.Add("@path", entity.Path, DbType.String, ParameterDirection.Input);
             parameter.Add("@filename", entity.FileName, DbType.String, ParameterDirection.Input);
@@ -29,7 +35,7 @@ namespace AspNetTemplate.DataAccess.Repository.Repository
             parameter.Add("@stateDescription", entity.StateDescription, DbType.String, ParameterDirection.Input);
             parameter.Add("@uploadDate", DateTime.Now, DbType.DateTime, ParameterDirection.Input);
 
-            return ExecuteScalarAsync<ExpenseInfo>(sql, parameter);
+            return ExecuteScalarAsync<int>(sql, parameter);
         }
 
         public Task<IEnumerable<ExpenseInfo>> AllAsync()

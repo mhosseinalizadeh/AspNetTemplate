@@ -1,4 +1,6 @@
-﻿using AspNetTemplate.ClientEntity.DTO;
+﻿using AspNetTemplate.ApplicationService.Helpers;
+using AspNetTemplate.ClientEntity;
+using AspNetTemplate.ClientEntity.DTO;
 using AspNetTemplate.CommonService;
 using AspNetTemplate.DataAccess.Repository.IRepository;
 using AspNetTemplate.DomainEntity;
@@ -9,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using static AspNetTemplate.ClientEntity.Enums;
 
 namespace AspNetTemplate.ApplicationService.AccountService
 {
@@ -20,13 +23,15 @@ namespace AspNetTemplate.ApplicationService.AccountService
         private IExpenseInfoRepository _expenseInfoRepository;
         private IUserRepository _userRepository;
         private IActionContextAccessor _actionContextAccessor;
+        private readonly Func<NotifyType, INotifyBodyCreator> _notifyBodyCreatorAccessor;
 
         public AccountService(ILocalizationService localizationService,
             IFileService fileService,
             IExpenseInfoRepository expenseInfoRepository,
             IEmailService emailService,
             IUserRepository userRepository,
-            IActionContextAccessor actionContextAccessor)
+            IActionContextAccessor actionContextAccessor,
+            Func<NotifyType, INotifyBodyCreator> notifyBodyCreatorAccessor)
         {
             _localizer = localizationService;
             _fileService = fileService;
@@ -34,90 +39,42 @@ namespace AspNetTemplate.ApplicationService.AccountService
             _emailService = emailService;
             _userRepository = userRepository;
             _actionContextAccessor = actionContextAccessor;
+            _notifyBodyCreatorAccessor = notifyBodyCreatorAccessor;
         }
 
         public async Task<ServiceResult> AcceptExpense(int id, int userid, string userRole)
         {
-            if (userRole != "TeamLead")
-            {
+            if (!hasManageExpensePermission(userRole))
                 return new ServiceResult(ServiceResultStatus.Exception, null, _localizer.Localize("Permission Denied!"));
-            }
 
-            var expense = await _expenseInfoRepository.FindAsync(id);
+            var expense = await UpdateExpense(id, State.Approved, "");
 
-            expense.State = "Approved";
-            expense.StateDescription = "";
-            await _expenseInfoRepository.UpdateAsync(expense);
+            await notifyFinanceUser(NotifyType.ApprovedExpense, expense, userid);
 
             return new ServiceResult(ServiceResultStatus.Success, null, _localizer.Localize("The expense approved successfully."));
         }
 
         public async Task<ServiceResult> DeclineExpense(int id, int userid, string userRole, string stateDescription)
         {
-            if (userRole != "TeamLead")
-            {
+            if (!hasManageExpensePermission(userRole))
                 return new ServiceResult(ServiceResultStatus.Exception, null, _localizer.Localize("Permission Denied!"));
-            }
 
-            var expense = await _expenseInfoRepository.FindAsync(id);
+            var expense = await UpdateExpense(id, State.Declined, stateDescription);
 
-            expense.State = "Declined";
-            expense.StateDescription = stateDescription;
-
-            await _expenseInfoRepository.UpdateAsync(expense);
+            await notifyFinanceUser(NotifyType.DeclineExpense, expense, userid);
 
             return new ServiceResult(ServiceResultStatus.Success, null, _localizer.Localize("The expense declined!"));
         }
 
         public async Task<ServiceResult> AddExpense(ExpenseUploadDto model)
         {
-            var filePath = _fileService.GetNewExpenseFilePath();
-
             if (model.ExpensePhoto.Length > 0)
             {
-
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    await model.ExpensePhoto.CopyToAsync(stream);
-                }
-                var expense = new ExpenseInfo()
-                {
-                    FileName = model.ExpensePhoto.FileName,
-                    OwnerId = model.UserId,
-                    Path = filePath,
-                    State = ExpenseState.UnApproved.ToString(),
-                    UploadDate = DateTime.Now,
-                    Description = model.Description
-                };
-                await _expenseInfoRepository.AddAsync(expense);
-
-                var user = await _userRepository.FindAsync(model.UserId);
-
-                var financeUsers = await _userRepository.FindFinanceUser();
-                var tasks = new List<Task>();
-                foreach (var financeUser in financeUsers)
-                {
-                    var message = createMailBody(getFormattedExpense(expense), user);
-                    tasks.Add(_emailService.SendEmailAsync(financeUser.Email, _localizer.Localize("A spense submitted"), message));
-                }
-                await Task.WhenAll(tasks);
+                var expense = await addExpense(model);
+                await notifyFinanceUser(NotifyType.AddExpense,  expense, model.UserId);
             }
 
             return new ServiceResult(ServiceResultStatus.Success, null, _localizer.Localize("Your expense file was uploaded successfully."));
-
-        }
-
-        private string createMailBody(ExpenseDatatableDto expenseDatatableDto, User user)
-        {
-
-            var request = _actionContextAccessor.ActionContext.HttpContext.Request;
-            var absoluteUrl = GetAbsoluteUrl(request);
-
-            var htmlStr = "";
-            htmlStr += $"<div>An expense file uploaded by {user.FirstName} {user.LastName} at {expenseDatatableDto.UploadDate}.</div>" +
-                $"<div>View uploaded expence: <a target='_blank' href='{absoluteUrl}/account/viewexpense/{expenseDatatableDto.Id}'>View File</a></div>";
-
-            return htmlStr;
         }
 
         public async Task<ServiceResult> GetExpenseAsync(int id, int userid, string userRole)
@@ -157,9 +114,9 @@ namespace AspNetTemplate.ApplicationService.AccountService
             return new ServiceResult(ServiceResultStatus.Success, formattedData);
         }
 
-        private List<ExpenseDatatableDto> getFormattedExpenses(IEnumerable<ExpenseInfo> res)
+        private List<ExpenseDto> getFormattedExpenses(IEnumerable<ExpenseInfo> res)
         {
-            var list = new List<ExpenseDatatableDto>();
+            var list = new List<ExpenseDto>();
             foreach (var item in res)
             {
                 list.Add(getFormattedExpense(item));
@@ -167,8 +124,8 @@ namespace AspNetTemplate.ApplicationService.AccountService
             return list;
         }
 
-        private ExpenseDatatableDto getFormattedExpense(ExpenseInfo item) {
-            var expenseDto = new ExpenseDatatableDto()
+        private ExpenseDto getFormattedExpense(ExpenseInfo item) {
+            var expenseDto = new ExpenseDto()
             {
                 Description = item.Description,
                 FileName = item.FileName,
@@ -188,6 +145,99 @@ namespace AspNetTemplate.ApplicationService.AccountService
                         "://",
                         request.Host.ToUriComponent(),
                         request.PathBase.ToUriComponent());
+        }
+
+        private bool hasManageExpensePermission(string userRole)
+        {
+            return userRole == "TeamLead";
+        }
+
+        private async Task<ExpenseInfo> UpdateExpense(int id, State state, string stateDescription)
+        {
+            var expense = await _expenseInfoRepository.FindAsync(id);
+            expense.State = state.GetDescription();
+            expense.StateDescription = stateDescription;
+
+            await _expenseInfoRepository.UpdateAsync(expense);
+            return expense;
+        }
+
+        private async Task notifyFinanceUser(NotifyType type, ExpenseInfo expense, int userId)
+        {
+            var financeUsers = await _userRepository.FindFinanceUser();
+            var user = await _userRepository.FindAsync(userId);
+            var notifyBody = new NotifyBodyDto()
+            {
+                ExpenseModel = getFormattedExpense(expense),
+                User = user,
+                AbsoluteUrl = getAbsoluteUrl()
+            };
+            INotifyBodyCreator bodyCreator = _notifyBodyCreatorAccessor(type);
+            var message = bodyCreator.CreateBody(notifyBody);
+
+            var subject = getNotifySubjectbyType(type);
+
+            var notifyData = new NotifyDataDto()
+            {
+                To = financeUsers,
+                Message = message,
+                Subject = _localizer.Localize(subject)
+            };
+
+            await notifyUser(notifyData);
+        }
+
+        private string getNotifySubjectbyType(NotifyType type)
+        {
+            switch (type)
+            {
+                case NotifyType.AddExpense:
+                    return "A Spense Added";
+                case NotifyType.DeclineExpense:
+                    return "A Spense Declined";
+                case NotifyType.ApprovedExpense:
+                    return "A Spense Approved";
+                default:
+                    return string.Empty;
+
+            }
+        }
+
+        private async Task<ExpenseInfo> addExpense(ExpenseUploadDto model)
+        {
+            var filePath = _fileService.GetNewExpenseFilePath();
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await model.ExpensePhoto.CopyToAsync(stream);
+            }
+            var expense = new ExpenseInfo()
+            {
+                FileName = model.ExpensePhoto.FileName,
+                OwnerId = model.UserId,
+                Path = filePath,
+                State = ExpenseState.UnApproved.ToString(),
+                UploadDate = DateTime.Now,
+                Description = model.Description
+            };
+            expense.Id = await _expenseInfoRepository.AddAsyncById(expense);
+
+            return expense;
+        }
+
+        private async Task notifyUser(NotifyDataDto notifyData)
+        {
+            var tasks = new List<Task>();
+
+            foreach (var notifyUser in notifyData.To)
+                tasks.Add(_emailService.SendEmailAsync(notifyUser.Email, notifyData.Subject, notifyData.Message));
+
+            await Task.WhenAll(tasks);
+        }
+
+        private string getAbsoluteUrl()
+        {
+            var request = _actionContextAccessor.ActionContext.HttpContext.Request;
+            return GetAbsoluteUrl(request);
         }
 
     }

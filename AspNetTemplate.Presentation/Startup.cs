@@ -17,6 +17,9 @@ using AspNetTemplate.ApplicationService.AccountService;
 using JqueryDataTables.ServerSide.AspNetCoreWeb.DependencyInjection;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using AspNetTemplate.ClientEntity;
+using AspNetTemplate.ApplicationService.Helpers;
+using System;
+using static AspNetTemplate.ClientEntity.Enums;
 
 namespace AspNetTemplate
 {
@@ -70,6 +73,23 @@ namespace AspNetTemplate
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ILocalizationRepository, LocalizationRepository>();
             services.AddScoped<IExpenseInfoRepository, ExpenseInfoRepository>();
+
+            services.AddScoped<AddExpenseNotifyBodyCreator>();
+
+            services.AddTransient<Func<NotifyType, INotifyBodyCreator>>(serviceProvider => key =>
+            {
+                switch (key)
+                {
+                    case NotifyType.AddExpense:
+                        return serviceProvider.GetService<AddExpenseNotifyBodyCreator>();
+                    case NotifyType.DeclineExpense:
+                        return serviceProvider.GetService<DeclineExpenseNotifyBodyCreator>();
+                    case NotifyType.ApprovedExpense:
+                        return serviceProvider.GetService<ApproveExpenseNotifyBodyCreator>();
+                    default:
+                        throw new NotImplementedException(); // or maybe return null, up to you
+                }
+            });
 
             services.AddTransient<IActionContextAccessor, ActionContextAccessor>();
             services.AddSingleton<FileServiceData>(provider => new FileServiceData {
