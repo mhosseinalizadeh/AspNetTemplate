@@ -88,3 +88,9 @@ H:\Omid\prj\MyApp\MyApp\AspNetTemplate.Presentation\obj\Debug\netcoreapp2.2\Razo
 H:\Omid\prj\MyApp\MyApp\AspNetTemplate.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\Account\ViewExpenses.g.cshtml.cs
 H:\Omid\prj\MyApp\MyApp\AspNetTemplate.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\Account\ManageExpenses.g.cshtml.cs
 H:\Omid\prj\MyApp\MyApp\AspNetTemplate.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\Account\ReportExpenses.g.cshtml.cs
+R:\Workspaces\AspNetTemplate\AspNetTemplate.Presentation\bin\Debug\netcoreapp2.2\AspNetTemplate.CommonService.dll
+R:\Workspaces\AspNetTemplate\AspNetTemplate.Presentation\bin\Debug\netcoreapp2.2\AspNetTemplate.CommonService.pdb
+R:\Workspaces\AspNetTemplate\AspNetTemplate.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\Account\AddExpense.g.cshtml.cs
+R:\Workspaces\AspNetTemplate\AspNetTemplate.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\Account\ManageExpenses.g.cshtml.cs
+R:\Workspaces\AspNetTemplate\AspNetTemplate.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\Account\ReportExpenses.g.cshtml.cs
+R:\Workspaces\AspNetTemplate\AspNetTemplate.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\Account\ViewExpenses.g.cshtml.cs

@@ -20,6 +20,8 @@ using AspNetTemplate.ClientEntity;
 using AspNetTemplate.ApplicationService.Helpers;
 using System;
 using static AspNetTemplate.ClientEntity.Enums;
+using Serilog;
+using Serilog.Events;
 
 namespace AspNetTemplate
 {
@@ -43,25 +45,32 @@ namespace AspNetTemplate
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+
+            //Configure appSettings
             IConfigurationSection appSettings = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettings);
+
+            //Configure MemorayCache as in momory cache system
             services.AddMemoryCache();
             services.AddSingleton<IMemoryCache>(provider => new MemoryCache(new MemoryCacheOptions
             {
                 SizeLimit = 20
             }));
 
+            //Register Transaction for Unit of Work
             services.AddScoped<IDbTransaction>(provider =>
             {
                 var UnitOfWork = (DapperUnitOfWork)provider.GetService(typeof(IUnitOfWork));
                 return UnitOfWork.Transaction;
             });
 
-
+            //Register Unit of Work
             services.AddScoped<IUnitOfWork, DapperUnitOfWork>(provider => new DapperUnitOfWork(Configuration.GetConnectionString("DefaultConnection")));
 
+            //Using simple cookie authentication system
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
 
+            //Register application services
             services.AddScoped<ILocalizationService, LocalizationService>();
             services.AddScoped<ICacheService, CacheService>();
             services.AddScoped<IUserService, UserService>();
@@ -70,14 +79,17 @@ namespace AspNetTemplate
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IEmailService, EmailService>();
 
+            //Register repositories
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ILocalizationRepository, LocalizationRepository>();
             services.AddScoped<IExpenseInfoRepository, ExpenseInfoRepository>();
 
+            //Register email body creator classes
             services.AddScoped<AddExpenseNotifyBodyCreator>();
             services.AddScoped<DeclineExpenseNotifyBodyCreator>();
             services.AddScoped<ApproveExpenseNotifyBodyCreator>();
 
+            //Register email body creator resolver function
             services.AddTransient<Func<NotifyType, INotifyBodyCreator>>(serviceProvider => key =>
             {
                 switch (key)
@@ -93,11 +105,30 @@ namespace AspNetTemplate
                 }
             });
 
+            //Register ActionContextAccessor
             services.AddTransient<IActionContextAccessor, ActionContextAccessor>();
-            services.AddSingleton<FileServiceData>(provider => new FileServiceData {
+
+            //Register File Service data as singleton
+            services.AddSingleton(provider => new FileServiceData {
                 ExpensePhotoPath = HostingEnvironment.WebRootPath + "\\expensefiles\\"
             });
+
+            //Use Serilog as exception logging system
+            //Create log file per day and max file count is 31
+            services.AddSingleton<ILogger>(c =>
+            {
+                return new LoggerConfiguration()
+                .MinimumLevel.Debug()
+                .MinimumLevel.Override("Microsoft", LogEventLevel.Error)
+                .Enrich.FromLogContext()
+                .WriteTo.Async(config => config.File("logs\\log.txt", fileSizeLimitBytes: null, rollingInterval: RollingInterval.Day, retainedFileCountLimit: 31, shared: true))
+                .CreateLogger();
+            });
+
+            //USe Datatable for grid view
             services.AddJqueryDataTables();
+
+            //Register compatibility version
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
