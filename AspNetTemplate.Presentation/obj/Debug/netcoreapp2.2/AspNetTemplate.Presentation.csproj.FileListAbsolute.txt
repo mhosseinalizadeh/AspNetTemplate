@@ -94,3 +94,5 @@ R:\Workspaces\AspNetTemplate\AspNetTemplate.Presentation\obj\Debug\netcoreapp2.2
 R:\Workspaces\AspNetTemplate\AspNetTemplate.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\Account\ManageExpenses.g.cshtml.cs
 R:\Workspaces\AspNetTemplate\AspNetTemplate.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\Account\ReportExpenses.g.cshtml.cs
 R:\Workspaces\AspNetTemplate\AspNetTemplate.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\Account\ViewExpenses.g.cshtml.cs
+R:\Workspaces\AspNetTemplate\AspNetTemplate.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\Account\AddUser.g.cshtml.cs
+R:\Workspaces\AspNetTemplate\AspNetTemplate.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_PartialMessage.g.cshtml.cs

@@ -24,6 +24,8 @@ namespace AspNetTemplate.ApplicationService.AccountService
         private IUserRepository _userRepository;
         private IActionContextAccessor _actionContextAccessor;
         private readonly Func<NotifyType, INotifyBodyCreator> _notifyBodyCreatorAccessor;
+        private ICryptographyService _cryptographyService;
+        private IUserRoleRepository _userRoleRepository;
 
         public AccountService(ILocalizationService localizationService,
             IFileService fileService,
@@ -31,7 +33,9 @@ namespace AspNetTemplate.ApplicationService.AccountService
             IEmailService emailService,
             IUserRepository userRepository,
             IActionContextAccessor actionContextAccessor,
-            Func<NotifyType, INotifyBodyCreator> notifyBodyCreatorAccessor)
+            Func<NotifyType, INotifyBodyCreator> notifyBodyCreatorAccessor,
+            ICryptographyService cryptographyService,
+            IUserRoleRepository userRoleRepository)
         {
             _localizer = localizationService;
             _fileService = fileService;
@@ -40,6 +44,8 @@ namespace AspNetTemplate.ApplicationService.AccountService
             _userRepository = userRepository;
             _actionContextAccessor = actionContextAccessor;
             _notifyBodyCreatorAccessor = notifyBodyCreatorAccessor;
+            _cryptographyService = cryptographyService;
+            _userRoleRepository = userRoleRepository;
         }
 
         public async Task<ServiceResult> AcceptExpense(int id, int userid, string userRole)
@@ -114,6 +120,21 @@ namespace AspNetTemplate.ApplicationService.AccountService
             return new ServiceResult(ServiceResultStatus.Success, formattedData);
         }
 
+        public async Task<ServiceResult> AddUser(UserDto userModel)
+        {
+            userModel.Id = await _userRepository.AddAsyncById(new User {
+                Email = userModel.Email,
+                FirstName = userModel.FirstName,
+                LastName = userModel.LastName,
+                Password = _cryptographyService.ComputeHash(userModel.Password)
+            });
+
+            await _userRoleRepository.AddAsync(new UserRole() { RoleId = (int)userModel.Role, UserId = userModel.Id });
+
+            return new ServiceResult(ServiceResultStatus.Success, null, _localizer.Localize("New user created successfully."));
+        }
+
+        #region private methods
         private List<ExpenseDto> getFormattedExpenses(IEnumerable<ExpenseInfo> res)
         {
             var list = new List<ExpenseDto>();
@@ -239,6 +260,7 @@ namespace AspNetTemplate.ApplicationService.AccountService
             var request = _actionContextAccessor.ActionContext.HttpContext.Request;
             return GetAbsoluteUrl(request);
         }
+#endregion private methods
 
     }
 }

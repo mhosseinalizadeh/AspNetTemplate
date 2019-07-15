@@ -21,5 +21,15 @@ namespace AspNetTemplate.ClientEntity
             [Description("Declined")]
             Declined
         }
+
+        public enum Role {
+            [Description("Employee")]
+            Employee = 1,
+            [Description("TeamLead")]
+            TeamLead = 2,
+            [Description("Finance")]
+            Finance = 3,
+
+        }
     }
 }

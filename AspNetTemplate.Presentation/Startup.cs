@@ -83,6 +83,7 @@ namespace AspNetTemplate
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ILocalizationRepository, LocalizationRepository>();
             services.AddScoped<IExpenseInfoRepository, ExpenseInfoRepository>();
+            services.AddScoped<IUserRoleRepository, UserRoleRepository>();
 
             //Register email body creator classes
             services.AddScoped<AddExpenseNotifyBodyCreator>();

@@ -25,7 +25,7 @@ namespace AspNetTemplate.DataAccess.Repository.Repository
         public Task<int> AddAsyncById(ExpenseInfo entity)
         {
             var sql = $"INSERT INTO {_tblName} (Path, FileName, OwnerId, State, Description, StateDescription, UploadDate)" +
-                $" VALUES (@path, @filename, @ownerid, @state, @description, @stateDescription, @uploadDate) SELECT CAST(SCOPE_IDENTITY() as int";
+                $" VALUES (@path, @filename, @ownerid, @state, @description, @stateDescription, @uploadDate) SELECT CAST(SCOPE_IDENTITY() as int) ";
             DynamicParameters parameter = new DynamicParameters();
             parameter.Add("@path", entity.Path, DbType.String, ParameterDirection.Input);
             parameter.Add("@filename", entity.FileName, DbType.String, ParameterDirection.Input);

@@ -16,5 +16,6 @@ namespace AspNetTemplate.ApplicationService.AccountService
         Task<ServiceResult> LoadAllExpenses();
         Task<ServiceResult> AcceptExpense(int id, int userid, string userRole);
         Task<ServiceResult> DeclineExpense(int id, int userid, string userRole, string stateDescription);
+        Task<ServiceResult> AddUser(UserDto userModel);
     }
 }

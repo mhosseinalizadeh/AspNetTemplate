@@ -23,6 +23,20 @@ namespace AspNetTemplate.DataAccess.Repository.Repository
             throw new NotImplementedException();
         }
 
+        public Task<int> AddAsyncById(User entity)
+        {
+            var sql = $"INSERT INTO {_tblName} (FirstName, LastName, Email, Password) Values " +
+                $"(@firstName, @lastName, @email, @password) SELECT CAST(SCOPE_IDENTITY() as int) ";
+
+            DynamicParameters parameter = new DynamicParameters();
+            parameter.Add("@firstName", entity.FirstName, DbType.String, ParameterDirection.Input);
+            parameter.Add("@lastName", entity.LastName, DbType.String, ParameterDirection.Input);
+            parameter.Add("@email", entity.Email, DbType.String, ParameterDirection.Input);
+            parameter.Add("@password", entity.Password, DbType.String, ParameterDirection.Input);
+
+            return ExecuteScalarAsync<int>(sql, parameter);
+        }
+
         public Task<IEnumerable<User>> AllAsync()
         {
             var sql = $"SELECT FirstName, LastName FROM [{_tblName}]";

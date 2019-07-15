@@ -42,9 +42,8 @@ namespace AspNetTemplate.Presentation.Controllers
             var result = await _userService.CheckPassword(loginModel);
 
             if (result.Status == ServiceResultStatus.Exception)
-            {
                 return Json(result);
-            }
+            
 
             var user = (User)result.Result;
             var principal = getPrincipal(user);
@@ -68,20 +67,36 @@ namespace AspNetTemplate.Presentation.Controllers
             return View();
         }
 
+        [Route("/account/adduser")]
+        public IActionResult AddUser()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Route("/account/adduser")]
+        public async Task<IActionResult> AddUser(UserDto userModel)
+        {
+            if (!ModelState.IsValid)
+                return View(new ServiceResult(ServiceResultStatus.Exception, null, getErrorMessages(ModelState)));
+
+
+            ServiceResult result = await _accountService.AddUser(userModel);
+
+            _unitOfWork.Commit();
+            return View(result);
+        }
+
         [HttpPost]
         [Route("/account/addexpense")]
         public async Task<IActionResult> AddExpense(ExpenseUploadDto model)
         {
             if (!ModelState.IsValid)
-            {
                 return View(new ServiceResult(ServiceResultStatus.Exception, null, getErrorMessages(ModelState)));
-            }
 
             var userid = GetUserId();
             if (userid != 0)
-            {
                 model.UserId = userid;
-            }
 
             ServiceResult result = await _accountService.AddExpense(model);
 
@@ -90,19 +105,19 @@ namespace AspNetTemplate.Presentation.Controllers
         }
 
         [Route("/account/viewexpenses")]
-        public async Task<IActionResult> ViewExpenses()
+        public IActionResult ViewExpenses()
         {
             return View();
         }
 
         [Route("/account/manageexpenses")]
-        public async Task<IActionResult> ManageExpenses()
+        public IActionResult ManageExpenses()
         {
             return View();
         }
 
         [Route("/account/reportexpenses")]
-        public async Task<IActionResult> ReportExpenses()
+        public IActionResult ReportExpenses()
         {
             return View();
         }
@@ -134,9 +149,8 @@ namespace AspNetTemplate.Presentation.Controllers
             var userRole = GetUserRole();
             var results = await _accountService.AcceptExpense(id, userid, userRole);
             if (results.Status == ServiceResultStatus.Success)
-            {
                 _unitOfWork.Commit();
-            }
+            
             return Json(results);
         }
 
@@ -148,9 +162,8 @@ namespace AspNetTemplate.Presentation.Controllers
             var userRole = GetUserRole();
             var results = await _accountService.DeclineExpense(id, userid, userRole, stateDescription);
             if (results.Status == ServiceResultStatus.Success)
-            {
                 _unitOfWork.Commit();
-            }
+            
             return Json(results);
         }
 
@@ -170,6 +183,7 @@ namespace AspNetTemplate.Presentation.Controllers
             return File(new byte[1], "application/octet-stream", "denied.png");
         }
 
+        #region private methods
         private string GetUserRole()
         {
             return User.Claims.Where(c => c.Type == ClaimTypes.Role).Select(c => c.Value).SingleOrDefault();
@@ -209,5 +223,6 @@ namespace AspNetTemplate.Presentation.Controllers
 
             return new ClaimsPrincipal(identity);
         }
+        #endregion private methods
     }
 }

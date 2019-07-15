@@ -10,5 +10,6 @@ namespace AspNetTemplate.DataAccess.Repository.IRepository
     {
         Task<IEnumerable<User>> FindByMailAsync(string email);
         Task<IEnumerable<User>> FindFinanceUser();
+        Task<int> AddAsyncById(User entity);
     }
 }
