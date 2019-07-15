@@ -34,7 +34,7 @@ namespace AspNetTemplate.ApplicationService.UserService
         {
             var hashedPassword = getHashed(loginModel.Password);
 
-            var user = (await _userRepository.FindByMailAsync(loginModel.Email)).FirstOrDefault();
+            var user = (await _userRepository.FindByMailAsync(loginModel.Email))?.FirstOrDefault();
             if(user == null)
                 return new ServiceResult(ServiceResultStatus.Exception, null, _localizationService.Localize("User Not Found!"));
 
