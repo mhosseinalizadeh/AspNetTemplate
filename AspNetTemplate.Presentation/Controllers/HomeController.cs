@@ -17,9 +17,8 @@ namespace AspNetTemplate.Controllers
         public HomeController(IUserService userService) {
             _userService = userService;
         }
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var users = await _userService.GetAllUsers();
             var model = new IndexViewModel();
             return View(model);
         }

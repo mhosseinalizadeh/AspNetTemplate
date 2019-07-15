@@ -39,7 +39,7 @@ namespace AspNetTemplate.DataAccess.Repository.Repository
 
         public Task<IEnumerable<User>> AllAsync()
         {
-            var sql = $"SELECT FirstName, LastName FROM [{_tblName}]";
+            var sql = $"SELECT FirstName, LastName FROM {_tblName}";
             return QueryAsync<User>(sql, null);
         }
 

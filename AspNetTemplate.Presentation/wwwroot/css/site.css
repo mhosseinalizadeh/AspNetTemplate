@@ -60,3 +60,6 @@ body {
 .username-holder {
     margin-right: 30px;
 }
+.hide {
+display:none;
+}

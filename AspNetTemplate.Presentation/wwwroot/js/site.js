@@ -258,3 +258,10 @@ var AppManager = {
 toastr.options.preventDuplicates = true;
 toastr.options.closeButton = true;
 toastr.options.positionClass = "toast-bottom-right";
+
+$(document).ajaxSend(function () {
+    $(".alert-container").fadeIn(250);
+});
+$(document).ajaxComplete(function () {
+    $(".alert-container").hide();
+});

@@ -27,7 +27,7 @@ namespace AspNetTemplate.ApplicationService.UserService
 
         public async Task<ServiceResult> GetAllUsers()
         {
-            return new ServiceResult(ServiceResultStatus.Success,_userRepository.AllAsync());
+            return new ServiceResult(ServiceResultStatus.Success,await _userRepository.AllAsync());
         }
 
         public async Task<ServiceResult> CheckPassword(LoginDto loginModel)

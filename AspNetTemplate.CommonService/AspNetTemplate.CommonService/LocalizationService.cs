@@ -10,13 +10,14 @@ namespace AspNetTemplate.CommonService
     public class LocalizationService : ILocalizationService
     {
         List<Localization> _localizations;
-        ICacheService _cacheService;
-        ILocalizationRepository _localizationRepository;
         public LocalizationService(ILocalizationRepository localizationRepository, ICacheService cacheService)
         {
             var locals = cacheService.Get(CacheKeys.Phrase);
-            if (locals == null)
+            if (locals == null) {
                 _localizations = localizationRepository.AllAsync("en").Result.ToList();
+                if(_localizations.Count > 0)
+                    cacheService.Set(CacheKeys.Phrase, _localizations);
+            }
             else
                 _localizations = (List<Localization>)locals;
         }
