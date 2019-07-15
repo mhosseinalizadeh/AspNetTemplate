@@ -22,3 +22,15 @@ H:\Omid\prj\MyApp\MyApp\AspNetTemplate.ClientEntity\ClientEntity\obj\Debug\netco
 H:\Omid\prj\MyApp\MyApp\AspNetTemplate.ClientEntity\ClientEntity\obj\Debug\netcoreapp2.2\AspNetTemplate.ClientEntity.csproj.CopyComplete
 H:\Omid\prj\MyApp\MyApp\AspNetTemplate.ClientEntity\ClientEntity\obj\Debug\netcoreapp2.2\AspNetTemplate.ClientEntity.dll
 H:\Omid\prj\MyApp\MyApp\AspNetTemplate.ClientEntity\ClientEntity\obj\Debug\netcoreapp2.2\AspNetTemplate.ClientEntity.pdb
+H:\Omid\prj\Sample\AspNetTemplate.ClientEntity\ClientEntity\bin\Debug\netcoreapp2.2\AspNetTemplate.ClientEntity.deps.json
+H:\Omid\prj\Sample\AspNetTemplate.ClientEntity\ClientEntity\bin\Debug\netcoreapp2.2\AspNetTemplate.ClientEntity.dll
+H:\Omid\prj\Sample\AspNetTemplate.ClientEntity\ClientEntity\bin\Debug\netcoreapp2.2\AspNetTemplate.ClientEntity.pdb
+H:\Omid\prj\Sample\AspNetTemplate.ClientEntity\ClientEntity\bin\Debug\netcoreapp2.2\AspNetTemplate.DomainEntity.dll
+H:\Omid\prj\Sample\AspNetTemplate.ClientEntity\ClientEntity\bin\Debug\netcoreapp2.2\AspNetTemplate.DomainEntity.pdb
+H:\Omid\prj\Sample\AspNetTemplate.ClientEntity\ClientEntity\obj\Debug\netcoreapp2.2\AspNetTemplate.ClientEntity.csprojAssemblyReference.cache
+H:\Omid\prj\Sample\AspNetTemplate.ClientEntity\ClientEntity\obj\Debug\netcoreapp2.2\AspNetTemplate.ClientEntity.csproj.CoreCompileInputs.cache
+H:\Omid\prj\Sample\AspNetTemplate.ClientEntity\ClientEntity\obj\Debug\netcoreapp2.2\AspNetTemplate.ClientEntity.AssemblyInfoInputs.cache
+H:\Omid\prj\Sample\AspNetTemplate.ClientEntity\ClientEntity\obj\Debug\netcoreapp2.2\AspNetTemplate.ClientEntity.AssemblyInfo.cs
+H:\Omid\prj\Sample\AspNetTemplate.ClientEntity\ClientEntity\obj\Debug\netcoreapp2.2\AspNetTemplate.ClientEntity.csproj.CopyComplete
+H:\Omid\prj\Sample\AspNetTemplate.ClientEntity\ClientEntity\obj\Debug\netcoreapp2.2\AspNetTemplate.ClientEntity.dll
+H:\Omid\prj\Sample\AspNetTemplate.ClientEntity\ClientEntity\obj\Debug\netcoreapp2.2\AspNetTemplate.ClientEntity.pdb

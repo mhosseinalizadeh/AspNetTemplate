@@ -1,14 +1,14 @@
 ﻿@model AspNetTemplate.ClientEntity.ViewModel.IndexViewModel;
+@using System.Security.Claims;
 @{
     ViewData["Title"] = "Home page";
+    var UserRole = User.Claims.Where(c => c.Type == ClaimTypes.Role).Select(c => c.Value).SingleOrDefault();
 }
-@section Scripts{ 
+@section Scripts{
     <script src="~/js/pages/home/index.js"></script>
 }
 <div class="container text-center">
-    <h3 class="display-4">Welcome to Manage Expense System</h3>
-    <p>You can find the source of this project in <a href="https://github.com/mhosseinalizadeh/AspNetTemplate">this repository</a>.</p>
-
+    <h3 class="display-4 mb-5">Welcome to Manage Expense System</h3>
 
     <div class="row justify-content-md-center">
         @if (!User.Identity.IsAuthenticated)
@@ -18,17 +18,52 @@
                     <div class="form-group">
                         <label for="email" class="float-left">Email address</label>
                         <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        <small id="emailHelp" class="form-text text-muted">Team lead account email: sam@test.com</small>
                     </div>
                     <div class="form-group">
                         <label for="password" class="float-left">Password</label>
                         <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+                        <small id="emailHelp" class="form-text text-muted">Team lead account password: sam@test.com</small>
                     </div>
                     <button id="btn-login" type="submit" class="btn btn-primary">Login</button>
                 </form>
 
             </div>
         }
+        else
+        {
+            if (UserRole == "TeamLead")
+            {
 
+                <div class="col-md-12 text-left">
+                    <div class="card">
+                        <h5 class="card-header">Adding User Note</h5>
+                        <div class="card-body">
+                            <h5 class="card-title">Adding User</h5>
+                            <p class="card-text">Please add employee user and finance user through "Add User" menu or button below. Then you can use those account to login and test the system.<br />
+                                <b>For finance user use a valid email address because we send notification email to finance user.</b>
+                            </p>
+                            <a href="/account/adduser" class="btn btn-primary">Add User</a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="col-md-12 mt-1 text-left">
+                    <div class="card">
+                        <h5 class="card-header">Manage Expenses Note</h5>
+                        <div class="card-body">
+                            <h5 class="card-title">Managing Expenses</h5>
+                            <p>For manage expenses use "Manage Expenses" menu button or button below.</p>
+                            <a href="/account/manageexpenses" class="btn btn-primary">Manage Expenses</a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            }
+        }
     </div>
 </div>

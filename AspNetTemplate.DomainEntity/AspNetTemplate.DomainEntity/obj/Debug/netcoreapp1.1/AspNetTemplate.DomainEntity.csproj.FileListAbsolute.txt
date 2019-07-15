@@ -16,3 +16,12 @@ H:\Omid\prj\MyApp\MyApp\AspNetTemplate.DomainEntity\AspNetTemplate.DomainEntity\
 H:\Omid\prj\MyApp\MyApp\AspNetTemplate.DomainEntity\AspNetTemplate.DomainEntity\obj\Debug\netcoreapp1.1\AspNetTemplate.DomainEntity.AssemblyInfo.cs
 H:\Omid\prj\MyApp\MyApp\AspNetTemplate.DomainEntity\AspNetTemplate.DomainEntity\obj\Debug\netcoreapp1.1\AspNetTemplate.DomainEntity.dll
 H:\Omid\prj\MyApp\MyApp\AspNetTemplate.DomainEntity\AspNetTemplate.DomainEntity\obj\Debug\netcoreapp1.1\AspNetTemplate.DomainEntity.pdb
+H:\Omid\prj\Sample\AspNetTemplate.DomainEntity\AspNetTemplate.DomainEntity\bin\Debug\netcoreapp1.1\AspNetTemplate.DomainEntity.deps.json
+H:\Omid\prj\Sample\AspNetTemplate.DomainEntity\AspNetTemplate.DomainEntity\bin\Debug\netcoreapp1.1\AspNetTemplate.DomainEntity.dll
+H:\Omid\prj\Sample\AspNetTemplate.DomainEntity\AspNetTemplate.DomainEntity\bin\Debug\netcoreapp1.1\AspNetTemplate.DomainEntity.pdb
+H:\Omid\prj\Sample\AspNetTemplate.DomainEntity\AspNetTemplate.DomainEntity\obj\Debug\netcoreapp1.1\AspNetTemplate.DomainEntity.csprojAssemblyReference.cache
+H:\Omid\prj\Sample\AspNetTemplate.DomainEntity\AspNetTemplate.DomainEntity\obj\Debug\netcoreapp1.1\AspNetTemplate.DomainEntity.csproj.CoreCompileInputs.cache
+H:\Omid\prj\Sample\AspNetTemplate.DomainEntity\AspNetTemplate.DomainEntity\obj\Debug\netcoreapp1.1\AspNetTemplate.DomainEntity.AssemblyInfoInputs.cache
+H:\Omid\prj\Sample\AspNetTemplate.DomainEntity\AspNetTemplate.DomainEntity\obj\Debug\netcoreapp1.1\AspNetTemplate.DomainEntity.AssemblyInfo.cs
+H:\Omid\prj\Sample\AspNetTemplate.DomainEntity\AspNetTemplate.DomainEntity\obj\Debug\netcoreapp1.1\AspNetTemplate.DomainEntity.dll
+H:\Omid\prj\Sample\AspNetTemplate.DomainEntity\AspNetTemplate.DomainEntity\obj\Debug\netcoreapp1.1\AspNetTemplate.DomainEntity.pdb
