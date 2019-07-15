@@ -1,0 +1,70 @@
+﻿@using System.Security.Claims;
+@inject AspNetTemplate.CommonService.ILocalizationService Localizer
+@{
+    var UserRole = User.Claims.Where(c => c.Type == ClaimTypes.Role).Select(c => c.Value).SingleOrDefault();
+    var UserName = User.Claims.Where(c => c.Type == ClaimTypes.Name).Select(c => c.Value).SingleOrDefault();
+    var UserIsAuthenticated = User.Identity.IsAuthenticated;
+}
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+            <a class="nav-link" href="/">@Localizer.Localize("Home")</a>
+        </li>
+
+        @if (UserIsAuthenticated)
+        {
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Manage Expenses
+                </a>
+                @switch (UserRole)
+                {
+                    case "Employee":
+
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/account/addexpense">@Localizer.Localize("Upload An Expense")</a>
+                            <a class="dropdown-item" href="/account/viewexpenses">@Localizer.Localize("View My Expenses")</a>
+                        </div>
+                        break;
+                    case "TeamLead":
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                            <a class="dropdown-item" href="/account/manageexpenses">@Localizer.Localize("Manage Expenses")</a>
+                        </div>
+                        break;
+                    case "Finance":
+
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/account/reportexpenses">@Localizer.Localize("Expenses Report")</a>
+                        </div>
+
+                        break;
+                    default:
+                        break;
+                }
+            </li>
+
+            @if (UserRole == "TeamLead")
+            {
+                <li><a class="nav-link" href="/account/adduser">@Localizer.Localize("Add User")</a></li>
+            }
+        }
+
+
+        @if (UserIsAuthenticated)
+        {
+            <li><a class="nav-link" href="/account/logout">@Localizer.Localize("Log out")</a></li>
+        }
+
+    </ul>
+    @if (UserIsAuthenticated)
+    {
+        <form class="form-inline my-2 my-lg-0">
+            <div class="username-holder">
+                @Localizer.Localize("Welcome") @UserName!
+            </div>
+            <div class="role-holder">@Localizer.Localize("Your Role"): @UserRole</div>
+        </form>
+    }
+
+</div>

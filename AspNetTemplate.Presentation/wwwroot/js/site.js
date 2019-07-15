@@ -1,5 +1,54 @@
 ﻿/* Private Functions */
 
+function getColumns(type) {
+    if (type == "teamlead") {
+        return [
+            { data: 'Id' },
+            { data: 'Description' },
+            { data: 'UploadDate' },
+            {
+                data: 'State',
+                render: function (data) {
+                    return renderState(data);
+                }
+            },
+            { data: 'StateDescription' },
+            {
+                data: 'Link',
+                render: function (data, type, row, meta) {
+                    return renderViewFile(data, row);
+                }
+            },
+            {
+                data: 'Id',
+                render: function (data, type, row, meta) {
+                    return renderManageButtons(data, row);
+                }
+            }
+        ];
+    }
+    if (type == "finance") {
+        return [
+            { data: 'Id' },
+            { data: 'Description' },
+            { data: 'UploadDate' },
+            {
+                data: 'State',
+                render: function (data) {
+                    return renderState(data);
+                }
+            },
+            { data: 'StateDescription' },
+            {
+                data: 'Link',
+                render: function (data, type, row, meta) {
+                    return renderViewFile(data, row);
+                }
+            }
+        ]
+    }
+}
+
 function renderViewFile(data, row) {
     return '<a class="btn btn-small" href="' + data + '" data-lightbox="data" data-title="">'+ row.FileName +'</a>';
 }
@@ -92,7 +141,7 @@ var AppManager = {
                 AppManager.Notification.Error(result.messages[0]);
             });
         },
-        LoadAllExpenses: function (tableSelector) {
+        LoadAllExpenses: function (tableSelector, type) {
             AppManager.Expense.ManageExpenseDatatable  = $(tableSelector).DataTable({
                 searching: false,
                 dom: 'Bfrtip',
@@ -103,24 +152,7 @@ var AppManager = {
                     url: '/account/LoadAllExpenses',
                     dataSrc: ''
                 },
-                "columns": [
-                    { data: 'Id' },
-                    { data: 'Description' },
-                    { data: 'UploadDate' },
-                    {
-                        data: 'State',
-                        render: function (data) {
-                            return renderState(data);
-                        }
-                    },
-                    { data: 'StateDescription' },
-                    {
-                        data: 'Link',
-                        render: function (data, type, row, meta) {
-                            return renderViewFile(data, row);
-                        }
-                    }
-                ]
+                "columns": getColumns(type) 
             });
         },
         LoadAllUserExpense: function (tableSelector) {

@@ -1,5 +1,5 @@
 ﻿$("document").ready(function () {
-    AppManager.Expense.LoadAllExpenses("#expenses");
+    AppManager.Expense.LoadAllExpenses("#expenses", "teamlead");
 
     $("#expenses").on("click", ".accept-expense", function (event) {
         var id = $(event.currentTarget).data("id");

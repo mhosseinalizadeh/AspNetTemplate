@@ -10,7 +10,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - @Localizer.Localize("Manage Expenses")</title>
+    <title>@Localizer.Localize("Manage Expenses")</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -33,74 +33,11 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light w-100">
-                    
+
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mr-auto">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="/">@Localizer.Localize("Home")</a>
-                            </li>
-
-                            @if (UserIsAuthenticated)
-                            {
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Manage Expenses
-                                    </a>
-                                    @switch (UserRole)
-                                    {
-                                        case "Employee":
-
-                                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                                <a class="dropdown-item" href="/account/addexpense">@Localizer.Localize("Upload An Expense")</a>
-                                                <a class="dropdown-item" href="/account/viewexpenses">@Localizer.Localize("View My Expenses")</a>
-                                            </div>
-                                            break;
-                                        case "TeamLead":
-                                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-
-                                                <a class="dropdown-item" href="/account/manageexpenses">@Localizer.Localize("Manage Expenses")</a>
-                                            </div>
-                                            break;
-                                        case "Finance":
-
-                                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                                <a class="dropdown-item" href="/account/reportexpenses">@Localizer.Localize("Expenses Report")</a>
-                                            </div>
-
-                                            break;
-                                        default:
-                                            break;
-                                    }
-                                </li>
-
-                                @if (UserRole == "TeamLead")
-                                {
-                                    <li><a class="nav-link" href="/account/adduser">@Localizer.Localize("Add User")</a></li>
-                                }
-                            }
-
-
-                            @if (UserIsAuthenticated)
-                            {
-                                <li><a class="nav-link" href="/account/logout">@Localizer.Localize("Log out")</a></li>
-                            }
-
-                        </ul>
-                        @if (UserIsAuthenticated)
-                        {
-                            <form class="form-inline my-2 my-lg-0">
-                                <div class="username-holder">
-                                    @Localizer.Localize("Welcome") @UserName!
-                                </div>
-                                <div class="role-holder">@Localizer.Localize("Your Role"): @UserRole</div>
-                            </form>
-                        }
-
-                    </div>
+                    @await Html.PartialAsync("_PartialMenu")
                 </nav>
 
             </div>
