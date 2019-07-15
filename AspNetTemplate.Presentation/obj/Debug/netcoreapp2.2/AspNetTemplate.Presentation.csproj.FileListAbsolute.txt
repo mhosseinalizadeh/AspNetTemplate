@@ -148,3 +148,6 @@ H:\Omid\prj\Sample\AspNetTemplate.Presentation\obj\Debug\netcoreapp2.2\AspNetTem
 H:\Omid\prj\Sample\AspNetTemplate.Presentation\obj\Debug\netcoreapp2.2\AspNetTemplate.Presentation.csproj.CopyComplete
 H:\Omid\prj\Sample\AspNetTemplate.Presentation\obj\Debug\netcoreapp2.2\AspNetTemplate.Presentation.dll
 H:\Omid\prj\Sample\AspNetTemplate.Presentation\obj\Debug\netcoreapp2.2\AspNetTemplate.Presentation.pdb
+H:\Omid\prj\Sample\AspNetTemplate.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_PartialTeamLeadNote.g.cshtml.cs
+H:\Omid\prj\Sample\AspNetTemplate.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_PartialEmployeeNote.g.cshtml.cs
+H:\Omid\prj\Sample\AspNetTemplate.Presentation\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_PartialFinanceNote.g.cshtml.cs

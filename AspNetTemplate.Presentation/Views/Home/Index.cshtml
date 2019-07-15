@@ -34,35 +34,15 @@
         {
             if (UserRole == "TeamLead")
             {
-
-                <div class="col-md-12 text-left">
-                    <div class="card">
-                        <h5 class="card-header">Adding User Note</h5>
-                        <div class="card-body">
-                            <h5 class="card-title">Adding User</h5>
-                            <p class="card-text">Please add employee user and finance user through "Add User" menu or button below. Then you can use those account to login and test the system.<br />
-                                <b>For finance user use a valid email address because we send notification email to finance user.</b>
-                            </p>
-                            <a href="/account/adduser" class="btn btn-primary">Add User</a>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <div class="col-md-12 mt-1 text-left">
-                    <div class="card">
-                        <h5 class="card-header">Manage Expenses Note</h5>
-                        <div class="card-body">
-                            <h5 class="card-title">Managing Expenses</h5>
-                            <p>For manage expenses use "Manage Expenses" menu button or button below.</p>
-                            <a href="/account/manageexpenses" class="btn btn-primary">Manage Expenses</a>
-                        </div>
-                    </div>
-                </div>
-
-
-
+                @await Html.PartialAsync("_PartialTeamLeadNote")
+            }
+            if (UserRole == "Finance")
+            {
+                @await Html.PartialAsync("_PartialFinanceNote")
+            }
+            if (UserRole == "Employee")
+            {
+                @await Html.PartialAsync("_PartialEmployeeNote")
             }
         }
     </div>

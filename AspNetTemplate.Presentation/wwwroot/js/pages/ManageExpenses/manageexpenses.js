@@ -17,8 +17,9 @@
     $(document).on("click", ".btn-decline-submit", function () {
         var id = $(".btn-decline-submit").data("id");
         var stateDescription = $("textarea.decline-description").val();
+        $(".modal").modal("hide");
         AppManager.Expense.Decline(id, stateDescription, function (data) {
-            $(".modal").modal("hide");
+            
         });
     });
 });
